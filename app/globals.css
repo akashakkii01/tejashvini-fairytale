@@ -482,3 +482,13 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
     padding:16px 0 10px;
   }
 }
+
+
+/* Welcome page should wrap its content instead of filling the viewport */
+.kingdom.kingdom-welcome{
+  min-height:0;
+  padding-bottom:14px;
+}
+.kingdom-welcome .royal-footer{
+  margin-top:12px;
+}
