@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Music2, Pause, Play, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw, Menu, BookOpen } from "lucide-react";
 
 const wishes = [
@@ -30,6 +30,7 @@ export default function Home() {
   const [animationsPaused,setAnimationsPaused]=useState(false);
   const [crownFound,setCrownFound]=useState(false);
   const [secretNote,setSecretNote]=useState(false);
+  const prefersReducedMotion=useReducedMotion();
   const audioRef=useRef<HTMLAudioElement>(null);
   const inputRef=useRef<HTMLInputElement>(null);
   const objectUrlRef=useRef<string | null>(null);
@@ -43,9 +44,9 @@ export default function Home() {
     return ()=>window.removeEventListener("keydown",onKeyDown);
   },[]);
 
-  const pickMusic=()=>inputRef.current?.click();
+  const pickMusic=()=>{ if(inputRef.current){inputRef.current.value="";inputRef.current.click();} };
   const loadMusic=(e:React.ChangeEvent<HTMLInputElement>)=>{
-    const file=e.target.files?.[0]; if(!file||!audioRef.current)return;
+    const file=e.target.files?.[0]; e.target.value=""; if(!file||!audioRef.current)return;
     if(objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
     objectUrlRef.current=URL.createObjectURL(file);
     audioRef.current.src=objectUrlRef.current;
@@ -72,7 +73,7 @@ export default function Home() {
     </header>
 
     <section className="hero section-wrap" id="home">
-      <motion.div className="hero-copy" initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.8}}>
+      <motion.div className="hero-copy" initial={prefersReducedMotion?false:{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:prefersReducedMotion?0:.8}}>
         <div className="eyebrow"><Sparkles size={14}/> A LITTLE DAY OF MAGIC <Sparkles size={14}/></div>
         <p className="pretitle">A special little celebration for</p>
         <h1>Tejashvini<span className="name-star">✧</span></h1>
@@ -82,12 +83,12 @@ export default function Home() {
         <button className="primary-button" onClick={()=>jump("welcome")}>Enter your fairytale <span>✦</span></button>
         <p className="tiny-note">crafted with care, just for your special day</p>
       </motion.div>
-      <motion.div className="castle-art" initial={{opacity:0,scale:.92}} animate={{opacity:1,scale:1}} transition={{duration:1,delay:.2}}>
+      <motion.div className="castle-art" initial={prefersReducedMotion?false:{opacity:0,scale:.92}} animate={{opacity:1,scale:1}} transition={{duration:prefersReducedMotion?0:1,delay:prefersReducedMotion?0:.2}}>
         <button className={`hidden-crown ${crownFound?"found":""}`} onClick={()=>setCrownFound(true)} aria-label="Find the hidden crown" title="A tiny secret">♕</button><div className="moon"/><span className="art-star a1">✦</span><span className="art-star a2">✧</span><span className="art-star a3">✦</span>
         <div className="soft-cloud cloud-a"/><div className="soft-cloud cloud-b"/>
         <div className="storybook-castle"><div className="turret t-left"><i/><b/></div><div className="turret t-right"><i/><b/></div><div className="castle-body"><div className="castle-roof"/><div className="castle-window"/><div className="castle-door"/></div><span className="castle-flag">♡</span></div>
         <div className="rolling-hill hill-a"/><div className="rolling-hill hill-b"/>
-        <motion.div className="royal-bunny" animate={animationsPaused?{y:0}:{y:[0,-6,0]}} transition={{duration:2.6,repeat:animationsPaused?0:Infinity,ease:"easeInOut"}}><i className="bunny-ear left"/><i className="bunny-ear right"/><span className="bunny-tiara">♛</span><div className="bunny-head"><i/><i/><b>ᴗ</b><em>♡</em></div></motion.div>
+        <motion.div className="royal-bunny" animate={animationsPaused||prefersReducedMotion?{y:0}:{y:[0,-6,0]}} transition={{duration:2.6,repeat:animationsPaused||prefersReducedMotion?0:Infinity,ease:"easeInOut"}}><i className="bunny-ear left"/><i className="bunny-ear right"/><span className="bunny-tiara">♛</span><div className="bunny-head"><i/><i/><b>ᴗ</b><em>♡</em></div></motion.div>
         <span className="castle-caption">your own little kingdom</span>
       </motion.div>
     </section>
