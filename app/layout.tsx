@@ -6,8 +6,8 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "A Little Fairytale for Tejashvini",
-  description: "A tiny magical world filled with smiles, sweet wishes, and a little royal sparkle.",
+  title: "A Little Fairytale for Tejashvini | Princess Day",
+  description: "A magical little world made of happy thoughts, tiny adventures, sweet surprises, and warm Princess Day wishes.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
