@@ -992,3 +992,142 @@ body:has(.kingdom-welcome){
   .compliments-scene .compliment-card,.compliments-scene .compliment-open-mark{transition:none}
   .compliments-scene .compliment-reveal-wrap{animation:none}
 }
+
+
+/* New Scene 2 concept: an interactive constellation instead of cards */
+.compliments-scene .compliment-constellation{
+  position:relative;
+  isolation:isolate;
+  width:min(100%,520px);
+  margin:25px auto 17px;
+  padding:15px 8px 13px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:23px 12px;
+}
+.compliments-scene .constellation-line{
+  position:absolute;
+  z-index:-1;
+  height:1px;
+  transform-origin:left center;
+  background:linear-gradient(90deg,transparent,#f8d5ff77,#ffe6bb88,transparent);
+  opacity:.75;
+  pointer-events:none;
+}
+.compliments-scene .constellation-line-one{left:17%;top:29%;width:66%;transform:rotate(0deg)}
+.compliments-scene .constellation-line-two{left:17%;top:29%;width:68%;transform:rotate(29deg)}
+.compliments-scene .constellation-line-three{left:17%;top:72%;width:68%;transform:rotate(-29deg)}
+.compliments-scene .constellation-star{
+  min-width:0;
+  min-height:91px;
+  padding:5px 2px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:0;
+  border-radius:14px;
+  background:transparent;
+  color:#fbe9fa;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .25s ease;
+}
+.compliments-scene .constellation-star-icon{
+  width:51px;
+  height:51px;
+  display:grid;
+  place-items:center;
+  border:1px solid #f9dafa88;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 25%,#f9c9f055,#a95cbd33 70%);
+  color:#ffe9c7;
+  font-size:22px;
+  box-shadow:0 0 18px #f4b5f044,inset 0 1px #ffffff30;
+  transition:transform .3s ease,box-shadow .3s ease,background .3s ease;
+}
+.compliments-scene .constellation-star-name{
+  max-width:100%;
+  color:#ead3f0;
+  font-family:'Playfair Display',serif;
+  font-size:11px;
+  line-height:1.2;
+  text-align:center;
+}
+.compliments-scene .constellation-star.is-selected .constellation-star-icon{
+  transform:scale(1.13);
+  background:radial-gradient(circle at 35% 25%,#fff0c9aa,#df83d977 72%);
+  box-shadow:0 0 0 5px #f7d9f51b,0 0 28px #ffd6a877,inset 0 1px #ffffff88;
+}
+.compliments-scene .constellation-star.is-selected .constellation-star-name{color:#ffe6bd}
+.compliments-scene .constellation-star:focus-visible{outline:2px solid #ffe6bd;outline-offset:3px}
+.compliments-scene .constellation-message{
+  width:min(100%,470px);
+  min-height:146px;
+  margin:0 auto 21px;
+  padding:20px 20px 18px;
+  border:1px solid #f6d6ef55;
+  border-radius:18px;
+  background:radial-gradient(ellipse at 50% 0%,#f3b2e426,transparent 70%),linear-gradient(145deg,#ffffff16,#ffffff08);
+  box-shadow:inset 0 1px #ffffff22,0 12px 28px #09051f25;
+  text-align:center;
+  animation:constellation-arrive .35s ease both;
+}
+.compliments-scene .constellation-message-kicker{
+  display:block;
+  color:#f4c7eb;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+.compliments-scene .constellation-message h3{
+  margin:9px 0 6px;
+  color:#fff0fb;
+  font-family:'Playfair Display',serif;
+  font-size:21px;
+  font-weight:500;
+}
+.compliments-scene .constellation-message p{
+  margin:7px auto 0;
+  max-width:350px;
+  color:#f0dff3;
+  font-size:12px;
+  line-height:1.65;
+}
+.compliments-scene .constellation-message-note{
+  display:block;
+  margin:12px auto 0;
+  padding-top:10px;
+  border-top:1px solid #f5d8f044;
+  color:#ffe2b8;
+  font-family:'Playfair Display',serif;
+  font-size:12px;
+  font-style:italic;
+  line-height:1.5;
+}
+.compliments-scene .constellation-message-hint{
+  display:block;
+  margin-top:10px;
+  color:#d9b9e6;
+  font-size:9px;
+  letter-spacing:.8px;
+}
+@keyframes constellation-arrive{
+  from{opacity:0;transform:translateY(9px);filter:blur(2px)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@media(max-width:480px){
+  .compliments-scene .compliment-constellation{gap:17px 7px;margin:19px auto 13px;padding:10px 3px}
+  .compliments-scene .constellation-star{min-height:82px;gap:7px}
+  .compliments-scene .constellation-star-icon{width:45px;height:45px;font-size:19px}
+  .compliments-scene .constellation-star-name{font-size:10px}
+  .compliments-scene .constellation-message{min-height:136px;padding:17px 14px;margin-bottom:18px}
+  .compliments-scene .constellation-message h3{font-size:19px}
+  .compliments-scene .constellation-message p{font-size:11px}
+  .compliments-scene .constellation-message-note{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .compliments-scene .constellation-star,.compliments-scene .constellation-star-icon{transition:none}
+  .compliments-scene .constellation-message{animation:none}
+}
