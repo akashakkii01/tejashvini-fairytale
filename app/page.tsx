@@ -32,7 +32,7 @@ export default function Home() {
   const [wishIndex, setWishIndex] = useState(0);
 
   return (
-    <main className="kingdom">
+    <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
       <div className="night-sky" aria-hidden="true">
         {Array.from({ length: 34 }, (_, i) => <i key={i} className="sky-star" style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 4) % 78}%`, animationDelay: `${(i % 7) * .4}s` }}>✦</i>)}
       </div>
