@@ -438,3 +438,149 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
   .welcome-scene .castle-artwork-img{border-radius:16px}
   .welcome-scene .castle-stage-art .welcome-ribbon{margin:-12px auto 0;font-size:12px;padding:8px 15px}
 }
+
+
+/* Full-screen fairytale poster composition inspired by the supplied reference */
+.kingdom:has(.welcome-scene){padding-top:0}
+.kingdom:has(.welcome-scene) .royal-nav,
+.kingdom:has(.welcome-scene) .royal-progress,
+.kingdom:has(.welcome-scene) .scene-count,
+.kingdom:has(.welcome-scene) .royal-footer{display:none}
+.welcome-scene{
+  width:100%;
+  min-height:100svh;
+  max-width:none;
+  margin:0;
+  padding:28px 18px 36px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  background:
+    radial-gradient(ellipse at 50% 66%,#a43caa88 0,transparent 46%),
+    radial-gradient(ellipse at 8% 0%,#a6389b66 0,transparent 30%),
+    linear-gradient(180deg,#080e2d 0%,#17133f 48%,#32104f 100%);
+}
+.welcome-scene:before,.welcome-scene:after{
+  content:"✿　🌸　✿";
+  position:absolute;
+  top:0;
+  color:#ffb4df;
+  font-size:clamp(24px,6vw,48px);
+  line-height:1;
+  text-shadow:0 0 18px #ff9bdc;
+  pointer-events:none;
+  z-index:3;
+}
+.welcome-scene:before{left:-12px;transform:rotate(-18deg)}
+.welcome-scene:after{right:-14px;transform:rotate(18deg)}
+.welcome-scene .welcome-ornament{
+  color:#ffe0a8;
+  font-size:22px;
+  letter-spacing:8px;
+  margin:0 0 8px;
+  text-shadow:0 0 14px #ffc66b;
+}
+.welcome-scene .royal-eyebrow{
+  color:#f7c7ed;
+  font-size:11px;
+  letter-spacing:4px;
+  margin:0 0 12px;
+  text-align:center;
+}
+.welcome-scene h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,8vw,68px);
+  line-height:1.05;
+  text-align:center;
+  margin:4px 0 10px;
+  text-shadow:0 5px 28px #f48edc88;
+}
+.welcome-scene h1 em{
+  color:#ff9bdc;
+  font-style:italic;
+}
+.welcome-hero-art{
+  position:relative;
+  width:min(760px,100%);
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  isolation:isolate;
+}
+.welcome-scene .castle-artwork-img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:56svh;
+  object-fit:contain;
+  object-position:center;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 7%,black 90%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,black 7%,black 90%,transparent 100%);
+}
+.welcome-moon{
+  position:absolute;
+  z-index:2;
+  right:7%;
+  top:3%;
+  color:#fff0c8;
+  font-size:clamp(38px,9vw,76px);
+  text-shadow:0 0 18px #ffe6a9,0 0 42px #eaa8ff;
+  transform:rotate(-22deg);
+}
+.welcome-blossoms{
+  position:absolute;
+  z-index:2;
+  color:#ffb5df;
+  font-size:clamp(20px,5vw,42px);
+  filter:drop-shadow(0 0 10px #ff8bd8);
+  pointer-events:none;
+}
+.welcome-blossoms-left{left:0;top:5%;transform:rotate(-24deg)}
+.welcome-blossoms-right{right:0;top:20%;transform:rotate(18deg)}
+.welcome-plaque{
+  position:relative;
+  z-index:4;
+  width:min(82%,430px);
+  margin:-4px auto 18px;
+  padding:12px 18px;
+  border:2px solid #f5cf8b;
+  outline:1px solid #f5cf8b88;
+  outline-offset:4px;
+  border-radius:38% 38% 30% 30% / 18% 18% 24% 24%;
+  background:linear-gradient(145deg,#3c174f,#68245f 55%,#3c174f);
+  color:#fff2f5;
+  font:italic clamp(20px,4.7vw,32px)/1.18 'Playfair Display',serif;
+  text-align:center;
+  text-shadow:0 0 12px #ffc5e9;
+  box-shadow:0 0 24px #f58cd977,inset 0 0 18px #f7c88b22;
+}
+.welcome-plaque span{display:block;color:#ffe2ad;font-size:25px;margin-top:2px}
+.welcome-scene .welcome-enter{
+  position:relative;
+  z-index:5;
+  min-width:min(72%,320px);
+  padding:15px 28px;
+  border:2px solid #ffd6f3;
+  outline:2px solid #ffc66b88;
+  outline-offset:4px;
+  border-radius:40px;
+  background:linear-gradient(100deg,#b83a9d,#ee63c4);
+  color:white;
+  font:500 clamp(15px,3.5vw,22px) 'Playfair Display',serif;
+  box-shadow:0 0 18px #ffb0e9,0 0 36px #f36bd9aa;
+}
+@media(max-width:600px){
+  .welcome-scene{padding:24px 12px 30px;min-height:100svh}
+  .welcome-scene h1{font-size:clamp(36px,9vw,52px);margin-bottom:6px}
+  .welcome-hero-art{width:100%;margin-top:0}
+  .welcome-scene .castle-artwork-img{max-height:49svh}
+  .welcome-plaque{margin-top:-8px;margin-bottom:17px;padding:10px 14px}
+  .welcome-scene .welcome-enter{min-width:76%;padding:13px 22px}
+}
