@@ -466,3 +466,19 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
   .welcome-scene .castle-poster-button{width:94vw;border-radius:16px}
   .welcome-scene .castle-poster-button .castle-artwork-full{border-radius:16px}
 }
+
+
+/* Tighten the welcome scene: remove the forced full-screen blank space */
+.welcome-scene{
+  min-height:0;
+  padding:22px 0 12px;
+}
+.welcome-scene .castle-poster-button{
+  margin:0 auto;
+}
+@media(max-width:600px){
+  .welcome-scene{
+    min-height:0;
+    padding:16px 0 10px;
+  }
+}
