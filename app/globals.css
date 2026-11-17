@@ -911,3 +911,84 @@ body:has(.kingdom-welcome){
   .compliments-scene .compliment-tap{font-size:7px;margin-top:8px}
   .compliments-scene .compliment-reveal{font-size:10px;margin-top:8px;padding-top:7px}
 }
+
+
+/* Compliment cards open like little enchanted keepsake books */
+.compliments-scene .compliment-card{
+  position:relative;
+  transform-origin:50% 18%;
+  transition:transform .38s cubic-bezier(.2,.8,.2,1),min-height .38s ease,box-shadow .3s ease,border-color .3s ease;
+  perspective:900px;
+}
+.compliments-scene .compliment-card:active{
+  transform:scale(.975);
+}
+.compliments-scene .compliment-open-mark{
+  position:absolute;
+  top:10px;
+  right:12px;
+  display:grid;
+  place-items:center;
+  width:20px;
+  height:20px;
+  border:1px solid #f6d8f455;
+  border-radius:50%;
+  color:#f8d8f3;
+  font-size:13px;
+  line-height:1;
+  opacity:.78;
+  transition:transform .35s ease,background .35s ease,opacity .35s ease;
+}
+.compliments-scene .compliment-card-open .compliment-open-mark{
+  transform:rotate(180deg);
+  background:#f6d8f422;
+  opacity:1;
+}
+.compliments-scene .compliment-reveal-wrap{
+  width:100%;
+  margin-top:12px;
+  padding:11px 4px 0;
+  border-top:1px solid #ffe2f455;
+  transform-origin:top center;
+  animation:keepsake-open .48s cubic-bezier(.16,1,.3,1) both;
+}
+.compliments-scene .compliment-reveal-label{
+  display:block;
+  color:#f2c2e9;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:1.8px;
+  margin-bottom:6px;
+}
+.compliments-scene .compliment-reveal{
+  margin:0;
+  padding:0;
+  border:0;
+  color:#ffe5bd;
+  font-family:'Playfair Display',serif;
+  font-size:12px;
+  line-height:1.55;
+}
+.compliments-scene .compliment-card-open{
+  min-height:190px;
+  transform:translateY(-3px);
+  border-color:#ffe0b8;
+  box-shadow:inset 0 1px #fff5,0 0 25px #ef9cdb45,0 13px 28px #09051f40;
+}
+.compliments-scene .compliment-progress{
+  transition:opacity .2s ease;
+}
+@keyframes keepsake-open{
+  0%{opacity:0;transform:perspective(700px) rotateX(-16deg) translateY(-9px) scaleY(.72);filter:blur(3px)}
+  65%{opacity:1;transform:perspective(700px) rotateX(3deg) translateY(1px) scaleY(1.02);filter:blur(0)}
+  100%{opacity:1;transform:perspective(700px) rotateX(0) translateY(0) scaleY(1);filter:blur(0)}
+}
+@media(max-width:480px){
+  .compliments-scene .compliment-open-mark{top:8px;right:9px;width:18px;height:18px;font-size:12px}
+  .compliments-scene .compliment-reveal-wrap{margin-top:9px;padding-top:8px}
+  .compliments-scene .compliment-reveal{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .compliments-scene .compliment-card,.compliments-scene .compliment-open-mark{transition:none}
+  .compliments-scene .compliment-reveal-wrap{animation:none}
+}
