@@ -492,3 +492,10 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
 .kingdom-welcome .royal-footer{
   margin-top:12px;
 }
+
+
+/* Keep the enchanted background visible below the compact welcome content */
+body:has(.kingdom-welcome){
+  background:radial-gradient(ellipse at 50% 80%,#a52cb7 0%,#56208e 35%,#211052 70%,#100a31 100%);
+  background-attachment:fixed;
+}
