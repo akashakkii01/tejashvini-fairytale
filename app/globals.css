@@ -206,3 +206,45 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
 @media(max-width:480px){
   .princess-art-refined{width:min(350px,94vw);margin-top:18px}
 }
+
+
+/* Soft magical frame around the uploaded portrait — photo itself stays untouched */
+.princess-art-refined{
+  position:relative;
+  padding:3px;
+  border:1px solid #ffd5f4;
+  border-radius:23px;
+  background:linear-gradient(135deg,#ffe9ad 0%,#ffb8ed 35%,#a98aff 68%,#ffe0a6 100%);
+  box-shadow:0 0 0 5px #f6b8ef18,0 0 28px 8px #ed8cdd55,0 18px 34px #09051e70;
+  overflow:visible;
+}
+.princess-portrait-image{
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  border-radius:19px;
+}
+.princess-art-refined:before,
+.princess-art-refined:after{
+  position:absolute;
+  z-index:2;
+  color:#ffe8a8;
+  font-size:23px;
+  line-height:1;
+  text-shadow:0 0 12px #ffb5ed,0 0 22px #ffb5ed;
+  pointer-events:none;
+  animation:portraitSparkle 2.8s ease-in-out infinite;
+}
+.princess-art-refined:before{content:"✦";top:12%;left:-13px}
+.princess-art-refined:after{content:"✧";right:-13px;bottom:16%;animation-delay:1.3s}
+@keyframes portraitSparkle{
+  0%,100%{opacity:.45;transform:scale(.78) rotate(-10deg)}
+  50%{opacity:1;transform:scale(1.18) rotate(12deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .princess-art-refined:before,.princess-art-refined:after{animation:none}
+}
