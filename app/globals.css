@@ -737,3 +737,125 @@ body:has(.kingdom-welcome){
   .princess-scene .royal-copy{font-size:11px;line-height:1.8;margin-bottom:15px}
   .princess-scene .royal-button{width:min(310px,88vw);padding:13px 15px;font-size:11px}
 }
+
+
+/* Scene 2 — royal compliment gallery */
+.compliments-scene{
+  max-width:700px;
+  padding-top:30px;
+  padding-bottom:26px;
+}
+.compliments-scene .royal-eyebrow{
+  margin:0 0 12px;
+  font-size:9px;
+  letter-spacing:2.5px;
+  color:#f5c8ed;
+}
+.compliments-scene h2{
+  margin:7px 0 10px;
+  font-size:clamp(34px,7.4vw,49px);
+  line-height:1.08;
+  letter-spacing:-.8px;
+}
+.compliments-scene h2 em{
+  color:#ffb8e9;
+  text-shadow:0 0 22px #f17bd733;
+}
+.compliments-scene>.royal-copy{
+  max-width:390px;
+  margin:0 auto 8px;
+  font-size:12px;
+  line-height:1.8;
+  color:#e7d0ef;
+}
+.compliments-scene .compliment-grid{
+  width:100%;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin:22px 0 21px;
+}
+.compliments-scene .compliment-card{
+  position:relative;
+  min-height:158px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:17px 13px 16px;
+  overflow:hidden;
+  border:1px solid #f3c9ef66;
+  border-radius:17px;
+  background:
+    radial-gradient(circle at 50% 0%,#f7b5ef20,transparent 62%),
+    linear-gradient(145deg,#ffffff18 0%,#ffffff09 48%,#d94bb41b 100%);
+  box-shadow:inset 0 1px #ffffff18,0 10px 25px #09051f30;
+  backdrop-filter:blur(10px);
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+.compliments-scene .compliment-card:before{
+  content:"";
+  position:absolute;
+  top:0;left:20%;right:20%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#ffe7bfaa,transparent);
+}
+.compliments-scene .compliment-card>span{
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  margin:0 auto 11px;
+  border:1px solid #f9d4f055;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 25%,#f5b8ed48,#d78ad51b 72%);
+  color:#ffe6fa;
+  font-size:19px;
+  box-shadow:0 0 18px #ed9bd922,inset 0 1px #ffffff20;
+}
+.compliments-scene .compliment-card h3{
+  margin:0 0 7px;
+  color:#fff0fb;
+  font-size:clamp(14px,3.5vw,17px);
+  line-height:1.25;
+  font-weight:500;
+  text-align:center;
+}
+.compliments-scene .compliment-card p{
+  max-width:245px;
+  margin:0;
+  color:#e9d5ef;
+  font-size:11px;
+  line-height:1.65;
+  text-align:center;
+}
+.compliments-scene .royal-button{
+  min-width:min(310px,88vw);
+  padding:14px 20px;
+  font-size:12px;
+  box-shadow:0 8px 24px #e34cb84d,inset 0 1px #fff8;
+}
+.compliments-scene .royal-back{
+  margin-top:12px;
+  padding:8px 14px;
+}
+@media(hover:hover){
+  .compliments-scene .compliment-card:hover{
+    transform:translateY(-3px);
+    border-color:#ffe0f6aa;
+    background:linear-gradient(145deg,#ffffff22,#d94bb426);
+  }
+}
+@media(max-width:480px){
+  .compliments-scene{padding-top:24px;padding-bottom:20px}
+  .compliments-scene .royal-eyebrow{font-size:8px;letter-spacing:1.9px;margin-bottom:10px}
+  .compliments-scene h2{font-size:clamp(32px,8.5vw,39px);line-height:1.08;margin:6px 0 9px}
+  .compliments-scene>.royal-copy{font-size:11px;line-height:1.7;padding:0 8px}
+  .compliments-scene .compliment-grid{gap:9px;margin:19px 0 19px}
+  .compliments-scene .compliment-card{
+    min-height:153px;
+    padding:14px 9px 13px;
+    border-radius:15px;
+  }
+  .compliments-scene .compliment-card>span{width:38px;height:38px;font-size:17px;margin-bottom:9px}
+  .compliments-scene .compliment-card h3{font-size:14px;margin-bottom:6px}
+  .compliments-scene .compliment-card p{font-size:10px;line-height:1.55}
+  .compliments-scene .royal-button{width:min(310px,88vw);font-size:11px;padding:13px 14px}
+}
