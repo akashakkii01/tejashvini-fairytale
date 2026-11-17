@@ -38,7 +38,8 @@ export default function Home() {
   const [scene, setScene] = useState(0);
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
-  const [wishIndex, setWishIndex] = useState(0);\n  const [activeCompliment, setActiveCompliment] = useState(-1);
+  const [wishIndex, setWishIndex] = useState(0);
+  const [activeCompliment, setActiveCompliment] = useState(-1);
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
