@@ -18,6 +18,15 @@ const gifts = [
   ["🧸", "A Warm Hug", "Sending a pocket-sized hug for whenever you need one."]
 ];
 
+const complimentReveals = [
+  "Keep sharing that light — it makes ordinary moments brighter.",
+  "Your small acts of kindness can mean more than you realise.",
+  "Never lose the little spark that makes you wonderfully you.",
+  "One step at a time. Your dreams deserve your patience and courage.",
+  "Your confidence and grace are your own kind of royal magic.",
+  "There is no one else quite like you — and that is your superpower."
+];
+
 const wishes = [
   "May your days be filled with laughter, kind people and tiny unexpected joys.",
   "May you never run out of reasons to smile or dreams to look forward to.",
@@ -29,7 +38,7 @@ export default function Home() {
   const [scene, setScene] = useState(0);
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
-  const [wishIndex, setWishIndex] = useState(0);
+  const [wishIndex, setWishIndex] = useState(0);\n  const [activeCompliment, setActiveCompliment] = useState(-1);
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
@@ -78,7 +87,12 @@ export default function Home() {
         <p className="royal-eyebrow">✦ little things worth celebrating ✦</p>
         <h2>Do you know how<br /><em>special you are?</em></h2>
         <p className="royal-copy">A few tiny reminders, because you deserve to hear them.</p>
-        <div className="compliment-grid">{compliments.map(([icon, title, copy]) => <article className="compliment-card" key={title}><span>{icon}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+        <div className="compliment-grid">{compliments.map(([icon, title, copy], index) => <button type="button" className={`compliment-card ${activeCompliment === index ? "compliment-card-open" : ""}`} key={title} onClick={() => setActiveCompliment(activeCompliment === index ? -1 : index)} aria-expanded={activeCompliment === index}>
+          <span className="compliment-icon">{icon}</span><h3>{title}</h3><p>{copy}</p>
+          <small className="compliment-tap">{activeCompliment === index ? "A little reminder for you" : "Tap to reveal ✦"}</small>
+          {activeCompliment === index && <p className="compliment-reveal">{complimentReveals[index]}</p>}
+        </button>)}</div>
+        <p className="compliment-progress">{activeCompliment === -1 ? "Choose a little reminder to open" : "One little reminder opened · tap again to close"}</p>
         <button className="royal-button" onClick={() => setScene(3)}>See your royal surprises <span>→</span></button>
         <button className="royal-back" onClick={() => setScene(1)}>← Back</button>
       </section>}
