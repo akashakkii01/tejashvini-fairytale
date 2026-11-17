@@ -404,38 +404,3 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
     padding:8px 15px;
   }
 }
-
-
-/* Display the complete portrait poster at its natural aspect ratio */
-.welcome-scene .castle-stage-art{
-  width:min(680px,94vw);
-  height:auto;
-  aspect-ratio:auto;
-  margin:18px auto 30px;
-  overflow:visible;
-}
-.welcome-scene .castle-artwork-full{
-  display:block;
-  width:100%;
-  height:auto;
-  max-height:none;
-  object-fit:contain;
-  object-position:center;
-  border:1px solid #ffd9f5;
-  border-radius:20px;
-  box-shadow:0 0 0 5px #f6b8ef12,0 0 32px 8px #ed8cdd55,0 18px 38px #09051e88;
-}
-.welcome-scene .castle-stage-art .welcome-ribbon{
-  position:relative;
-  left:auto;
-  bottom:auto;
-  transform:none;
-  width:max-content;
-  max-width:95%;
-  margin:-17px auto 0;
-}
-@media(max-width:600px){
-  .welcome-scene .castle-stage-art{width:94vw;margin:18px auto 28px}
-  .welcome-scene .castle-artwork-full{border-radius:16px}
-  .welcome-scene .castle-stage-art .welcome-ribbon{margin:-12px auto 0;font-size:12px;padding:8px 15px}
-}
