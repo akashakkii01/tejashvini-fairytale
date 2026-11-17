@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Music2, Pause, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw, Menu } from "lucide-react";
+import { Music2, Pause, Play, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw, Menu, BookOpen, FlaskConical } from "lucide-react";
 
 const wishes = [
   "May your days be full of tiny surprises and big smiles.",
@@ -25,6 +25,9 @@ export default function Home() {
   const [caught,setCaught]=useState<number[]>([]);
   const [musicOn,setMusicOn]=useState(false);
   const [menuOpen,setMenuOpen]=useState(false);
+  const [storyOpen,setStoryOpen]=useState(false);
+  const [potionMade,setPotionMade]=useState(false);
+  const [animationsPaused,setAnimationsPaused]=useState(false);
   const [trackName,setTrackName]=useState("");
   const audioRef=useRef<HTMLAudioElement>(null);
   const inputRef=useRef<HTMLInputElement>(null);
@@ -33,7 +36,7 @@ export default function Home() {
   useEffect(()=>()=>{ if(objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current); },[]);
   useEffect(()=>{
     const onKeyDown=(event:KeyboardEvent)=>{
-      if(event.key==="Escape"){setGiftOpen(false);setLetterOpen(false);setMenuOpen(false);}
+      if(event.key==="Escape"){setGiftOpen(false);setLetterOpen(false);setStoryOpen(false);setMenuOpen(false);}
     };
     window.addEventListener("keydown",onKeyDown);
     return ()=>window.removeEventListener("keydown",onKeyDown);
@@ -56,7 +59,8 @@ export default function Home() {
   const surprise=()=>setMessage(wishes[Math.floor(Math.random()*wishes.length)]);
   const jump=(id:string)=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
 
-  return <main className="fairytale-shell">
+  return <main className={`fairytale-shell ${animationsPaused?"motion-paused":""}`}>
+    <button className="motion-toggle" onClick={()=>setAnimationsPaused(v=>!v)} aria-pressed={animationsPaused}>{animationsPaused?<Play size={14}/>:<Pause size={14}/>}<span>{animationsPaused?"Play animations":"Pause animations"}</span></button>
     <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
     <header className="site-header">
       <a className="brand" href="#home"><span className="brand-crown">♕</span><span>TEJASHVINI'S LITTLE WORLD</span></a>
@@ -122,6 +126,8 @@ export default function Home() {
       <div className="magic-grid">
         <article className="magic-card gift-card"><div className="magic-illustration gift-illustration"><span>🎁</span><Sparkles/></div><span className="card-overline">A MYSTERY BOX</span><h3>A little something for you</h3><p>There might be a happy thought hiding inside.</p><button className="text-button" onClick={()=>setGiftOpen(true)}>Open the gift <span>↗</span></button></article>
         <article className="magic-card wish-card"><div className="magic-illustration wish-illustration"><span>💌</span><Heart/></div><span className="card-overline">HAPPINESS POST</span><h3>A random happy note</h3><p>{message||"Tap below whenever you need a tiny reminder."}</p><button className="text-button" onClick={surprise}>Get a happy note <span>↗</span></button></article>
+        <article className="magic-card potion-card"><div className="magic-illustration potion-illustration"><span>🧪</span><Sparkles/></div><span className="card-overline">A HAPPINESS POTION</span><h3>{potionMade?"Potion ready!":"Brew a little joy"}</h3><p>{potionMade?"A tiny reminder to take a breath, smile, and be kind to yourself.":"Mix a few ingredients: kindness, laughter, and a sprinkle of courage."}</p><button className="text-button" onClick={()=>setPotionMade(v=>!v)}>{potionMade?"Make another potion":"Mix the potion"} <span>✧</span></button></article>
+        <article className="magic-card story-card"><div className="magic-illustration story-illustration"><span>📚</span><BookOpen/></div><span className="card-overline">A SECRET STORYBOOK</span><h3>A page just for you</h3><p>There is a tiny story tucked away in this little kingdom.</p><button className="text-button" onClick={()=>setStoryOpen(true)}>Turn the page <span>↗</span></button></article>
         <article className="magic-card star-card"><div className="magic-illustration star-illustration"><span>⭐</span><Sparkles/></div><span className="card-overline">A MINI GAME</span><h3>Catch the little stars</h3><p>Tap the stars to collect a pocketful of sparkle.</p><div className="star-game"><div className="game-sky">{stars.map(s=><button key={s.id} className={`game-star ${caught.includes(s.id)?"caught":""}`} style={{left:`${s.left}%`,top:`${s.top}%`,animationDelay:`${s.delay}s`}} onClick={()=>setCaught(old=>old.includes(s.id)?old:[...old,s.id])} aria-label="Catch star">✦</button>)}</div><div className="game-score">Stars collected: <b>{caught.length}/12</b><button onClick={()=>setCaught([])} aria-label="Reset game"><RotateCcw size={13}/></button></div></div></article>
       </div>
     </section>
@@ -138,6 +144,7 @@ export default function Home() {
     <footer className="site-footer"><span>MADE WITH CARE & A LITTLE BIT OF FAIRY DUST</span><span>♡</span><span>YOUR LITTLE FAIRYTALE · 2026</span></footer>
 
     <AnimatePresence>
+      {storyOpen&&<motion.div className="overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setStoryOpen(false)}><motion.div className="popup-card" initial={{y:20,scale:.94}} animate={{y:0,scale:1}} exit={{y:15,scale:.96}} onClick={e=>e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="story-title"><button className="popup-close" onClick={()=>setStoryOpen(false)} aria-label="Close"><X/></button><div className="popup-emoji">🌙</div><span className="card-overline">A TINY FAIRYTALE</span><h2 id="story-title">The girl who collected little wonders</h2><p>Once upon a time, there was a girl who found magic in ordinary things — a new view from a train window, a story shared at just the right moment, and the joy of discovering something unexpected.</p><p>And wherever her curiosity took her, the world seemed a little brighter. The end? Not quite. Her next adventure was just beginning. ♡</p><button className="secondary-button" onClick={()=>setStoryOpen(false)}>Keep exploring</button></motion.div></motion.div>}
       {giftOpen&&<motion.div className="overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setGiftOpen(false)}><motion.div className="popup-card" initial={{y:20,scale:.94}} animate={{y:0,scale:1}} exit={{y:15,scale:.96}} onClick={e=>e.stopPropagation()}><button className="popup-close" onClick={()=>setGiftOpen(false)} aria-label="Close"><X/></button><div className="popup-emoji">🎀</div><span className="card-overline">A LITTLE GIFT</span><h2>One wish, wrapped just for you</h2><p>May you always find a reason to laugh, a place that feels like an adventure, and people who make you feel appreciated. Keep your sparkle, princess.</p><button className="secondary-button" onClick={()=>setGiftOpen(false)}>Aww, thank you ♡</button></motion.div></motion.div>}
       {letterOpen&&<motion.div className="overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setLetterOpen(false)}><motion.div className="popup-card letter-popup" initial={{y:20,scale:.94}} animate={{y:0,scale:1}} exit={{y:15,scale:.96}} onClick={e=>e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="letter-title"><button className="popup-close" onClick={()=>setLetterOpen(false)} aria-label="Close"><X/></button><div className="letter-seal">♡</div><span className="card-overline">A LITTLE NOTE FOR YOU</span><h2 id="letter-title">Dear Tejashvini,</h2><p>Wishing you a day filled with the kind of happiness that makes you smile for no reason, little surprises that make you go “aww”, and memories you’ll want to keep forever.</p><p>Keep being curious, keep sharing your stories, keep exploring new places, and keep making the world brighter in your own lovely way.</p><p className="letter-signoff">Stay magical, always <span>♡</span></p><button className="secondary-button" onClick={()=>setLetterOpen(false)}>Back to my little world</button></motion.div></motion.div>}
     </AnimatePresence>
