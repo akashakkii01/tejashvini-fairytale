@@ -45,17 +45,15 @@ export default function Home() {
       <div className="scene-count">A LITTLE FAIRYTALE · {scene + 1} / 5</div>
 
       {scene === 0 && <section className="royal-scene welcome-scene">
-        <div className="welcome-ornament" aria-hidden="true">✦　♛　✦</div>
-        <p className="royal-eyebrow">A DAY MADE JUST FOR YOU</p>
-        <h1>Welcome to your<br /><em>Little Kingdom</em></h1>
-        <div className="welcome-hero-art">
-          <span className="welcome-moon" aria-hidden="true">☾</span>
-          <span className="welcome-blossoms welcome-blossoms-left" aria-hidden="true">🌸 ✿ 🌸</span>
-          <img className="castle-artwork-img" src="/priness-castle-hero.png" alt="A glowing pink fairytale castle beneath a purple starry sky" />
-          <span className="welcome-blossoms welcome-blossoms-right" aria-hidden="true">✿ 🌸</span>
+        <p className="royal-eyebrow">✦ a royal invitation ✦</p>
+        <h1>Welcome to your<br /><em>little kingdom</em></h1>
+        <p className="royal-copy">A tiny place made to celebrate someone<br />who deserves a little extra magic.</p>
+        <div className="castle-stage castle-stage-art">
+          <div className="castle-artwork" role="img" aria-label="A glowing pink fairytale castle beneath a purple starry sky" />
+          <div className="welcome-ribbon">Princess Tejashvini's Kingdom</div>
         </div>
-        <div className="welcome-plaque">Princess Tejashvini's<br />Kingdom <span>♡</span></div>
-        <button className="royal-button welcome-enter" onClick={() => setScene(1)}>Enter the Kingdom <span>→</span></button>
+        <p className="royal-small">Your royal adventure is ready whenever you are.</p>
+        <button className="royal-button" onClick={() => setScene(1)}>Enter the kingdom <span>→</span></button>
       </section>}
 
       {scene === 1 && <section className="royal-scene princess-scene">
