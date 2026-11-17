@@ -88,7 +88,8 @@ export default function Home() {
         <p className="royal-eyebrow">✦ little things worth celebrating ✦</p>
         <h2>Do you know how<br /><em>special you are?</em></h2>
         <p className="royal-copy">A few tiny reminders, because you deserve to hear them.</p>
-        <div className="compliment-constellation" aria-label="Choose a star to discover a compliment">\n          <div className="constellation-orbit" aria-hidden="true"><span>♕</span><small>TEJASHVINI</small></div>
+        <div className="compliment-constellation" aria-label="Choose a star to discover a compliment">
+          <div className="constellation-orbit" aria-hidden="true"><span>♕</span><small>TEJASHVINI</small></div>
           <div className="constellation-line constellation-line-one" />
           <div className="constellation-line constellation-line-two" />
           <div className="constellation-line constellation-line-three" />
