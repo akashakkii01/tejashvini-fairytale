@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const compliments = [
-  ["♡", "Your Smile", "A little sunshine that can make an ordinary day feel special."],
+  ["♫", "Your Voice", "There is something so lovely about the way you speak — your words have a warmth all their own."],
   ["✿", "Your Kind Heart", "The thoughtful little things you do never go unnoticed."],
   ["✧", "Your Magic", "You have your own way of making moments feel brighter."],
   ["☾", "Your Dreams", "May you always have the courage and space to chase them."],
@@ -19,7 +19,7 @@ const gifts = [
 ];
 
 const complimentReveals = [
-  "Keep sharing that light — it makes ordinary moments brighter.",
+  "Never stop sharing your thoughts. Your voice has a warmth that can make even an ordinary moment feel special.",
   "Your small acts of kindness can mean more than you realise.",
   "Never lose the little spark that makes you wonderfully you.",
   "One step at a time. Your dreams deserve your patience and courage.",
