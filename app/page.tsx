@@ -52,9 +52,10 @@ export default function Home() {
           <span className="welcome-moon" aria-hidden="true">☾</span>
           <span className="welcome-blossoms welcome-blossoms-left" aria-hidden="true">🌸 ✿ 🌸</span>
           <img className="castle-artwork-img" src="/priness-castle-hero.png" alt="A glowing pink fairytale castle beneath a purple starry sky" />
-          <button className="welcome-image-enter" onClick={() => setScene(1)} aria-label="Enter the Kingdom" />
           <span className="welcome-blossoms welcome-blossoms-right" aria-hidden="true">✿ 🌸</span>
         </div>
+        <div className="welcome-plaque">Princess Tejashvini's<br />Kingdom <span>♡</span></div>
+        <button className="royal-button welcome-enter" onClick={() => setScene(1)}>Enter the Kingdom <span>→</span></button>
       </section>}
 
       {scene === 1 && <section className="royal-scene princess-scene">
