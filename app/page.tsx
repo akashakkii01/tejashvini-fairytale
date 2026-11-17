@@ -18,7 +18,6 @@ export default function Home() {
   const [blooms, setBlooms] = useState<number[]>([]);
   const [gift, setGift] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
-  const [musicOn, setMusicOn] = useState(false);
 
   const progress = useMemo(() => Math.round((chapter / 3) * 100), [chapter]);
 
@@ -33,9 +32,6 @@ export default function Home() {
       <div className="ambient ambient-two" aria-hidden="true" />
       <header className="topbar">
         <a className="wordmark" href="#" aria-label="A little fairytale home"><span className="wordmark-crown">♕</span> a little fairytale</a>
-        <button className="sound-toggle" onClick={() => setMusicOn(!musicOn)} aria-label="Toggle music">
-          <span>{musicOn ? "♫" : "♪"}</span> {musicOn ? "Sound on" : "Sound off"}
-        </button>
       </header>
 
       <div className="progress-wrap" aria-label={`Story progress ${progress}%`}>
