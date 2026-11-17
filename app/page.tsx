@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Music2, Pause, Play, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw, Menu, BookOpen } from "lucide-react";
+import { Music2, Pause, Play, Sparkles, Heart, Crown, TrainFront, ChevronDown, X, RotateCcw, Menu, BookOpen } from "lucide-react";
 
 const wishes = [
   "May your days be full of tiny surprises and big smiles.",
@@ -64,7 +64,7 @@ export default function Home() {
     <button className="motion-toggle" onClick={()=>setAnimationsPaused(v=>!v)} aria-pressed={animationsPaused}>{animationsPaused?<Play size={14}/>:<Pause size={14}/>}<span>{animationsPaused?"Play animations":"Pause animations"}</span></button>
     <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
     <header className="site-header">
-      <a className="brand" href="#home"><span className="brand-crown">♕</span><span>TEJASHVINI'S LITTLE WORLD</span></a>
+      <a className="brand" href="#home"><span className="brand-crown">♕</span><span>TEJASHVINI&apos;S LITTLE WORLD</span></a>
       <nav className="desktop-nav"><a href="#welcome">Welcome</a><a href="#little-things">Little things</a><a href="#express">Adventure</a><a href="#magic-room">Magic room</a><a href="#finale">The wish</a></nav>
       <button className="mobile-menu-toggle" onClick={()=>setMenuOpen(v=>!v)} aria-label={menuOpen?"Close navigation":"Open navigation"} aria-expanded={menuOpen}><Menu size={18}/></button>
       <button className="music-control" onClick={toggleMusic} aria-label={musicOn?"Pause background music":"Choose or play background music"}>{musicOn?<Pause size={15}/>:<Music2 size={15}/>}<span>{musicOn?"Pause":"Add music"}</span></button>
@@ -107,7 +107,7 @@ export default function Home() {
     <section className="appreciation-section section-wrap" id="little-things">
       <div className="section-heading"><span className="section-kicker">CHAPTER TWO · THE LITTLE THINGS</span><h2>Things that make you<br/><em>wonderfully you</em></h2><p>Some things deserve a little appreciation — especially the little details that make someone special.</p></div>
       <div className="quality-grid">
-        <article className="quality-card blush"><span className="quality-icon">💬</span><h3>The storyteller</h3><p>There is never a shortage of stories, random updates, or enthusiastic chapad-chapad. And honestly, that's a lovely thing.</p><span className="quality-number">01</span></article>
+        <article className="quality-card blush"><span className="quality-icon">💬</span><h3>The storyteller</h3><p>There is never a shortage of stories, random updates, or enthusiastic chapad-chapad. And honestly, that&apos;s a lovely thing.</p><span className="quality-number">01</span></article>
         <article className="quality-card lilac"><span className="quality-icon">🦋</span><h3>The curious mind</h3><p>Always ready to wonder, ask, learn, and find something interesting in the smallest moments.</p><span className="quality-number">02</span></article>
         <article className="quality-card butter"><span className="quality-icon">🌈</span><h3>The bright energy</h3><p>A little laugh, a little kindness, and a way of making an ordinary conversation feel lighter.</p><span className="quality-number">03</span></article>
         <article className="quality-card mint"><span className="quality-icon">🚂</span><h3>The explorer</h3><p>For the love of journeys, new views, train windows, and the excitement of somewhere new.</p><span className="quality-number">04</span></article>
