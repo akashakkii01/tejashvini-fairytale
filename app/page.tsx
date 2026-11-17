@@ -1,128 +1,122 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-const flowerNames = ["Daisy", "Tulip", "Cosmos", "Poppy", "Little star"];
-const flowerArt = ["🌼", "🌷", "🌸", "🌺", "💮"];
+const compliments = [
+  ["♡", "Your Smile", "A little sunshine that can make an ordinary day feel special."],
+  ["✿", "Your Kind Heart", "The thoughtful little things you do never go unnoticed."],
+  ["✧", "Your Magic", "You have your own way of making moments feel brighter."],
+  ["☾", "Your Dreams", "May you always have the courage and space to chase them."],
+  ["♕", "Your Royal Energy", "A crown is optional when you carry yourself with grace."],
+  ["🎀", "Simply You", "The best thing about you will always be that you're you."]
+];
+
+const gifts = [
+  ["🌷", "A Bouquet of Roses", "A little reminder that you deserve beautiful things."],
+  ["🍰", "A Sweet Treat", "May life always save its sweetest moments for you."],
+  ["👑", "A Royal Crown", "For the princess of this little corner of the internet."],
+  ["🧸", "A Warm Hug", "Sending a pocket-sized hug for whenever you need one."]
+];
+
 const wishes = [
-  "May your days be soft, sunny, and full of little reasons to smile.",
-  "You deserve all the lovely things this world has tucked away.",
-  "Keep being wonderfully, unapologetically you. That is your magic.",
-  "A little reminder: you make ordinary moments feel special.",
-  "May this year bring you gentle surprises and big happy dreams."
+  "May your days be filled with laughter, kind people and tiny unexpected joys.",
+  "May you never run out of reasons to smile or dreams to look forward to.",
+  "May life be gentle with you, and may all your good days find you.",
+  "Keep being your lovely self. The world needs your kind of magic."
 ];
 
 export default function Home() {
-  const [chapter, setChapter] = useState(0);
+  const [scene, setScene] = useState(0);
   const [opened, setOpened] = useState(false);
-  const [blooms, setBlooms] = useState<number[]>([]);
-  const [gift, setGift] = useState(false);
+  const [giftOpened, setGiftOpened] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
-
-  const progress = useMemo(() => Math.round((chapter / 3) * 100), [chapter]);
-
-  function bloomFlower(index: number) {
-    setBlooms((current) => current.includes(index) ? current : [...current, index]);
-  }
+  const [musicOn, setMusicOn] = useState(false);
 
   return (
-    <main className="fairytale">
-      <div className="paper-grid" aria-hidden="true" />
-      <div className="ambient ambient-one" aria-hidden="true" />
-      <div className="ambient ambient-two" aria-hidden="true" />
-      <header className="topbar">
-        <a className="wordmark" href="#" aria-label="A little fairytale home"><span className="wordmark-crown">♕</span> a little fairytale</a>
+    <main className="kingdom">
+      <div className="night-sky" aria-hidden="true">
+        {Array.from({ length: 34 }, (_, i) => <i key={i} className="sky-star" style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 4) % 78}%`, animationDelay: `${(i % 7) * .4}s` }}>✦</i>)}
+      </div>
+      <header className="royal-nav">
+        <span className="royal-mark">♕ <b>YOUR LITTLE KINGDOM</b></span>
+        <button className="music-chip" onClick={() => setMusicOn(!musicOn)} aria-pressed={musicOn}>{musicOn ? "♫ Music on" : "♪ Music off"}</button>
       </header>
 
-      <div className="progress-wrap" aria-label={`Story progress ${progress}%`}>
-        <div className="progress-track"><span style={{ width: `${progress}%` }} /></div>
-        <span className="progress-label">A tiny story · {chapter + 1} of 4</span>
-      </div>
+      <div className="royal-progress"><span style={{ width: `${(scene + 1) * 20}%` }} /></div>
+      <div className="scene-count">A LITTLE FAIRYTALE · {scene + 1} / 5</div>
 
-      {chapter === 0 && (
-        <section className="chapter opening">
-          <div className="eyebrow"><span className="tiny-star">✦</span> a little something, just for you <span className="tiny-star">✦</span></div>
-          <h1>For our very own<br /><em>Princess Tejashvini</em></h1>
-          <p className="intro-copy">Some days deserve a little extra magic.<br />Today, this tiny corner of the internet is all yours.</p>
-          <div className={`envelope-scene ${opened ? "is-open" : ""}`}>
-            <div className="envelope-shadow" />
-            <button className={`envelope ${opened ? "is-open" : ""}`} onClick={() => setOpened(true)} aria-label="Open your royal letter">
-              <span className="envelope-back" />
-              <span className="letter-peek"><span>For you</span><b>♡</b></span>
-              <span className="envelope-front" />
-              <span className="envelope-flap" />
-              <span className="seal">♕</span>
-              <span className="envelope-spark spark-a">✧</span><span className="envelope-spark spark-b">✦</span>
-            </button>
-            <span className="envelope-hint">{opened ? "Your letter is waiting ♡" : "tap the envelope to open"}</span>
+      {scene === 0 && <section className="royal-scene welcome-scene">
+        <p className="royal-eyebrow">✦ a royal invitation ✦</p>
+        <h1>Welcome to your<br /><em>little kingdom</em></h1>
+        <p className="royal-copy">A tiny place made to celebrate someone<br />who deserves a little extra magic.</p>
+        <div className="castle-stage">
+          <div className="moon">☾</div>
+          <div className="castle">
+            <div className="castle-tower tower-left"><i /><b /></div>
+            <div className="castle-tower tower-mid"><i /><b /></div>
+            <div className="castle-tower tower-right"><i /><b /></div>
+            <div className="castle-wing wing-left"><i /></div>
+            <div className="castle-wing wing-right"><i /></div>
+            <div className="castle-base"><span className="castle-door" /><span className="castle-window w-one" /><span className="castle-window w-two" /><span className="castle-window w-three" /></div>
+            <div className="castle-flag f-one">⚑</div><div className="castle-flag f-two">⚑</div><div className="castle-flag f-three">⚑</div>
           </div>
-          {opened && <button className="primary-button pop-in" onClick={() => setChapter(1)}>Read your letter <span>→</span></button>}
-          <div className="side-doodle doodle-left">♡<small>made with<br />love</small></div>
-          <div className="side-doodle doodle-right">✿</div>
-        </section>
-      )}
+          <div className="castle-platform"><span>✧</span><span>♡</span><span>✧</span></div>
+          <div className="welcome-ribbon">Princess Tejashvini's Kingdom</div>
+        </div>
+        <p className="royal-small">Your royal adventure is ready whenever you are.</p>
+        <button className="royal-button" onClick={() => setScene(1)}>Enter the kingdom <span>→</span></button>
+      </section>}
 
-      {chapter === 1 && (
-        <section className="chapter letter-chapter">
-          <div className="eyebrow">chapter one · a note from the heart</div>
-          <div className="letter-card">
-            <span className="card-corner corner-one">✿</span><span className="card-corner corner-two">✿</span>
-            <div className="letter-stamp">♡</div>
-            <p className="script-kicker">To the girl who deserves a little magic,</p>
-            <h2>Happy Princess Day<span>!</span></h2>
-            <div className="letter-divider">✦ ───────── ✦</div>
-            <p className="letter-body">I hope you never forget how special you are. May you always find flowers along your path, warmth in the little moments, and people who remind you how wonderful you are.</p>
-            <p className="letter-body">You don't need a crown to be a princess. Your kindness, your smile, and the way you make the world brighter already say it all.</p>
-            <p className="letter-sign">With a little love, <b>♡</b></p>
-            <div className="letter-bottom">a little reminder, whenever you need it</div>
-          </div>
-          <button className="primary-button" onClick={() => setChapter(2)}>Come see your garden <span>→</span></button>
-          <button className="text-button" onClick={() => setChapter(0)}>← back to the envelope</button>
-        </section>
-      )}
+      {scene === 1 && <section className="royal-scene princess-scene">
+        <p className="royal-eyebrow">✦ a day made just for you ✦</p>
+        <h2>Happy <em>Princess Day</em></h2>
+        <div className="princess-art" aria-label="A little princess illustration">
+          <div className="princess-halo">✧</div><div className="princess-crown">♛</div>
+          <div className="princess-hair" /><div className="princess-face"><i className="eye eye-left" /><i className="eye eye-right" /><i className="blush blush-left" /><i className="blush blush-right" /><i className="smile" /></div>
+          <div className="princess-neck" /><div className="princess-dress"><span>♡</span></div>
+          <div className="princess-sparkle ps-one">✦</div><div className="princess-sparkle ps-two">✧</div><div className="princess-sparkle ps-three">♡</div>
+        </div>
+        <h3 className="royal-quote">Royalty isn't about a crown.<br /><em>It's the happiness you bring.</em></h3>
+        <p className="royal-copy">Today, the kingdom is celebrating you.<br />Ready to see what's waiting inside?</p>
+        <button className="royal-button" onClick={() => setScene(2)}>Explore your royal surprises <span>→</span></button>
+        <button className="royal-back" onClick={() => setScene(0)}>← Back to the castle</button>
+      </section>}
 
-      {chapter === 2 && (
-        <section className="chapter garden-chapter">
-          <div className="eyebrow">chapter two · a garden that grows for you</div>
-          <h2 className="section-title">A flower for every<br /><em>little lovely thing</em></h2>
-          <p className="section-copy">Tap each little bud and watch your garden bloom.<br />This garden is growing just for you.</p>
-          <div className="garden-card">
-            <div className="garden-sky"><span className="garden-cloud cloud-a">☁</span><span className="garden-cloud cloud-b">☁</span><span className="garden-sun">☼</span></div>
-            <div className="garden-bed">
-              {flowerNames.map((name, i) => (
-                <button key={name} className={`flower-plant plant-${i} ${blooms.includes(i) ? "bloomed" : ""}`} onClick={() => bloomFlower(i)} aria-label={`Bloom ${name}`}>
-                  <span className="flower-head">{blooms.includes(i) ? flowerArt[i] : "✿"}</span>
-                  <span className="flower-stem" /><span className="flower-leaf leaf-left" /><span className="flower-leaf leaf-right" />
-                  <span className="flower-name">{name}</span>
-                </button>
-              ))}
-            </div>
-            <div className="garden-ground"><span>✧</span><span>♡</span><span>✿</span><span>♡</span><span>✧</span></div>
-          </div>
-          <div className="garden-progress"><span>{blooms.length === 5 ? "Your garden is in full bloom!" : `${blooms.length} of 5 flowers have bloomed`}</span><div className="mini-progress"><i style={{ width: `${blooms.length * 20}%` }} /></div></div>
-          {blooms.length === 5 ? <p className="completion-note pop-in">Look what you made! A whole garden of happiness. 🌷</p> : <p className="tap-hint">Each flower is hiding a little wish for you ♡</p>}
-          <button className="primary-button" onClick={() => setChapter(3)}>One last little surprise <span>→</span></button>
-          <button className="text-button" onClick={() => setChapter(1)}>← back to your letter</button>
-        </section>
-      )}
+      {scene === 2 && <section className="royal-scene compliments-scene">
+        <p className="royal-eyebrow">✦ little things worth celebrating ✦</p>
+        <h2>Do you know how<br /><em>special you are?</em></h2>
+        <p className="royal-copy">A few tiny reminders, because you deserve to hear them.</p>
+        <div className="compliment-grid">{compliments.map(([icon, title, copy]) => <article className="compliment-card" key={title}><span>{icon}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+        <button className="royal-button" onClick={() => setScene(3)}>See your royal surprises <span>→</span></button>
+        <button className="royal-back" onClick={() => setScene(1)}>← Back</button>
+      </section>}
 
-      {chapter === 3 && (
-        <section className="chapter finale-chapter">
-          <div className="eyebrow">chapter three · a little gift</div>
-          <h2 className="section-title">A tiny box of<br /><em>happy things</em></h2>
-          <p className="section-copy">Because you deserve a surprise, even on an ordinary day.</p>
-          <button className={`gift-box ${gift ? "gift-open" : ""}`} onClick={() => setGift(true)} aria-label="Open your gift">
-            <span className="gift-glow">✦</span><span className="gift-lid" /><span className="gift-body" /><span className="gift-ribbon-v" /><span className="gift-ribbon-h" /><span className="gift-bow">♡</span>
-            {gift && <span className="gift-burst">✧ ✦ ♡ ✦ ✧</span>}
-          </button>
-          <p className="tap-hint">{gift ? "A little happiness, just for you ♡" : "tap to unwrap your surprise"}</p>
-          {gift && <div className="wish-card pop-in"><span className="wish-flower">✿</span><p className="wish-label">a little wish for you</p><p className="wish-text">{wishes[wishIndex]}</p><button className="wish-next" onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>another little wish ↻</button></div>}
-          <div className="final-signoff"><span>♡</span><p>Keep shining, Princess Tejashvini.</p><small>Your fairytale is only just beginning.</small></div>
-          <button className="text-button" onClick={() => { setChapter(0); setOpened(false); setGift(false); }}>↺ experience it again</button>
-        </section>
-      )}
-      <footer className="footer"><span>♡</span> a little world made with love <span>♡</span></footer>
-      <div className="floating-petals" aria-hidden="true"><i>✿</i><i>♡</i><i>✧</i><i>✿</i><i>·</i></div>
+      {scene === 3 && <section className="royal-scene gifts-scene">
+        <p className="royal-eyebrow">✦ specially picked for a princess ✦</p>
+        <h2>Your Princess Day<br /><em>Gift Is Here 🎁</em></h2>
+        <div className="gift-list">{gifts.map(([icon, title, copy]) => <article className="gift-row" key={title}><span>{icon}</span><div><h3>{title}</h3><p>{copy}</p></div><b>♡</b></article>)}</div>
+        <div className="royal-note"><span>✧ A little note for you ✧</span><p>These gifts may be imaginary, but the wish behind them is real: I hope your day is as lovely as you are.</p></div>
+        <button className="royal-button" onClick={() => setScene(4)}>One last thing, Princess <span>→</span></button>
+        <button className="royal-back" onClick={() => setScene(2)}>← Back</button>
+      </section>}
+
+      {scene === 4 && <section className="royal-scene finale-scene">
+        <p className="royal-eyebrow">✦ sealed with a little love ✦</p>
+        <h2>A Little Letter from<br /><em>Your Biggest Admirer</em> 💌</h2>
+        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpened(true); }} aria-label="Open the princess day letter">
+          <div className="envelope-paper"><span>Dear Princess Tejashvini,</span><p>I hope you have a day filled with smiles, sweet surprises and all the happiness you deserve. Never forget how wonderful you are, and never stop being the person who makes little moments brighter.</p><p>Keep dreaming big, laughing often and shining in your own way. The world is a little more lovely with you in it.</p><b>Happy Princess Day! ♡</b><small>— From someone wishing you the very best</small></div>
+          <div className="envelope-pocket" /><div className="envelope-seal">♕</div>
+        </div>
+        {!opened && <p className="tap-envelope">Tap the envelope to open your letter ♡</p>}
+        <div className="final-gift-wrap">
+          <button className={`final-gift ${giftOpened ? "unwrapped" : ""}`} onClick={() => setGiftOpened(true)} aria-label="Open a final little gift"><span>🎀</span><b>?</b></button>
+          {giftOpened && <div className="wish-reveal"><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Another little wish ↻</button></div>}
+        </div>
+        <p className="final-signoff">Keep shining, Princess. <span>♡</span></p>
+        <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); }}>↺ Visit your kingdom again</button>
+      </section>}
+
+      <footer className="royal-footer"><span>✧</span> A little kingdom made with care <span>♡</span></footer>
     </main>
   );
 }
