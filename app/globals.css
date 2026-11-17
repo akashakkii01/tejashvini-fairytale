@@ -162,3 +162,25 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
     transform:translateY(15px);
   }
 }
+
+
+/* Refined fairytale princess portrait */
+.princess-art-refined{
+  width:min(360px,94vw);
+  height:auto;
+  aspect-ratio:360/430;
+  margin:22px auto 12px;
+  filter:none;
+  overflow:visible;
+}
+.princess-portrait{
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+  filter:drop-shadow(0 18px 24px #09051e70);
+}
+.princess-scene .royal-quote{margin-top:10px}
+@media(max-width:480px){
+  .princess-art-refined{width:min(350px,94vw);margin-top:18px}
+}
