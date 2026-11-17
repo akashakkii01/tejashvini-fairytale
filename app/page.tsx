@@ -50,7 +50,7 @@ export default function Home() {
           <p className="intro-copy">Some days deserve a little extra magic.<br />Today, this tiny corner of the internet is all yours.</p>
           <div className={`envelope-scene ${opened ? "is-open" : ""}`}>
             <div className="envelope-shadow" />
-            <button className="envelope" onClick={() => setOpened(true)} aria-label="Open your royal letter">
+            <button className={`envelope ${opened ? "is-open" : ""}`} onClick={() => setOpened(true)} aria-label="Open your royal letter">
               <span className="envelope-back" />
               <span className="letter-peek"><span>For you</span><b>♡</b></span>
               <span className="envelope-front" />
