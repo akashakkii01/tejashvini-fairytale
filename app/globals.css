@@ -404,3 +404,26 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
     padding:8px 15px;
   }
 }
+
+
+/* Restore the first castle-image layout: full poster in a framed card,
+   with the separate kingdom ribbon and one real Enter button below. */
+.welcome-scene .castle-stage-art{
+  display:block;width:min(680px,94vw);height:auto;aspect-ratio:auto;
+  margin:18px auto 12px;position:relative;overflow:visible;
+}
+.welcome-scene .castle-artwork-full{
+  display:block;width:100%;height:auto;max-height:none;object-fit:contain;
+  border:1px solid #ffd9f5;border-radius:22px;
+  box-shadow:0 0 0 5px #f6b8ef12,0 0 32px 8px #ed8cdd55,0 18px 38px #09051e88;
+}
+.welcome-scene .welcome-ribbon-below{
+  position:relative;left:auto;bottom:auto;transform:none;
+  width:max-content;max-width:95%;margin:0 auto 14px;
+}
+.welcome-scene .royal-button{position:relative;z-index:2}
+@media(max-width:600px){
+  .welcome-scene .castle-stage-art{width:94vw;margin:18px auto 12px}
+  .welcome-scene .castle-artwork-full{border-radius:16px}
+  .welcome-scene .welcome-ribbon-below{font-size:12px;padding:8px 15px;margin-bottom:14px}
+}
