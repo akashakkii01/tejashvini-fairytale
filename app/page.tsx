@@ -108,7 +108,10 @@ export default function Home() {
         <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); }}>↺ Visit your kingdom again</button>
       </section>}
 
-      <footer className="royal-footer"><span>✧</span> A little kingdom made with care <span>♡</span></footer>
+      <footer className="royal-footer">
+        <div className="royal-footer-main"><span>✧</span> A little kingdom made with care <span>♡</span></div>
+        <div className="footer-wish"><span className="footer-crown">♕</span><span className="footer-wish-line">May your little world always sparkle</span><span className="footer-stars">✦　✧　✦</span></div>
+      </footer>
     </main>
   );
 }
