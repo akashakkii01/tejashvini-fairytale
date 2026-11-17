@@ -49,7 +49,7 @@ export default function Home() {
         <h1>Welcome to your<br /><em>little kingdom</em></h1>
         <p className="royal-copy">A tiny place made to celebrate someone<br />who deserves a little extra magic.</p>
         <div className="castle-stage castle-stage-art">
-          <div className="castle-artwork" role="img" aria-label="A glowing pink fairytale castle beneath a purple starry sky" />
+          <img className="castle-artwork-full" src="/priness-castle-hero.png" alt="Full fairytale poster showing Princess Tejashvini's glowing pink castle, moonlit sky and flower-lined pathway" />
           <div className="welcome-ribbon">Princess Tejashvini's Kingdom</div>
         </div>
         <p className="royal-small">Your royal adventure is ready whenever you are.</p>
