@@ -28,6 +28,8 @@ export default function Home() {
   const [storyOpen,setStoryOpen]=useState(false);
   const [potionMade,setPotionMade]=useState(false);
   const [animationsPaused,setAnimationsPaused]=useState(false);
+  const [crownFound,setCrownFound]=useState(false);
+  const [secretNote,setSecretNote]=useState(false);
   const [trackName,setTrackName]=useState("");
   const audioRef=useRef<HTMLAudioElement>(null);
   const inputRef=useRef<HTMLInputElement>(null);
@@ -83,7 +85,7 @@ export default function Home() {
         <p className="tiny-note">crafted with care, just for your special day</p>
       </motion.div>
       <motion.div className="castle-art" initial={{opacity:0,scale:.92}} animate={{opacity:1,scale:1}} transition={{duration:1,delay:.2}}>
-        <div className="moon"/><span className="art-star a1">✦</span><span className="art-star a2">✧</span><span className="art-star a3">✦</span>
+        <button className={`hidden-crown ${crownFound?"found":""}`} onClick={()=>setCrownFound(true)} aria-label="Find the hidden crown" title="A tiny secret">♕</button><div className="moon"/><span className="art-star a1">✦</span><span className="art-star a2">✧</span><span className="art-star a3">✦</span>
         <div className="soft-cloud cloud-a"/><div className="soft-cloud cloud-b"/>
         <div className="storybook-castle"><div className="turret t-left"><i/><b/></div><div className="turret t-right"><i/><b/></div><div className="castle-body"><div className="castle-roof"/><div className="castle-window"/><div className="castle-door"/></div><span className="castle-flag">♡</span></div>
         <div className="rolling-hill hill-a"/><div className="rolling-hill hill-b"/>
@@ -127,6 +129,7 @@ export default function Home() {
         <article className="magic-card gift-card"><div className="magic-illustration gift-illustration"><span>🎁</span><Sparkles/></div><span className="card-overline">A MYSTERY BOX</span><h3>A little something for you</h3><p>There might be a happy thought hiding inside.</p><button className="text-button" onClick={()=>setGiftOpen(true)}>Open the gift <span>↗</span></button></article>
         <article className="magic-card wish-card"><div className="magic-illustration wish-illustration"><span>💌</span><Heart/></div><span className="card-overline">HAPPINESS POST</span><h3>A random happy note</h3><p>{message||"Tap below whenever you need a tiny reminder."}</p><button className="text-button" onClick={surprise}>Get a happy note <span>↗</span></button></article>
         <article className="magic-card potion-card"><div className="magic-illustration potion-illustration"><span>🧪</span><Sparkles/></div><span className="card-overline">A HAPPINESS POTION</span><h3>{potionMade?"Potion ready!":"Brew a little joy"}</h3><p>{potionMade?"A tiny reminder to take a breath, smile, and be kind to yourself.":"Mix a few ingredients: kindness, laughter, and a sprinkle of courage."}</p><button className="text-button" onClick={()=>setPotionMade(v=>!v)}>{potionMade?"Make another potion":"Mix the potion"} <span>✧</span></button></article>
+        <article className="magic-card crown-card"><div className="magic-illustration crown-illustration"><span>👑</span><Sparkles/></div><span className="card-overline">A ROYAL LITTLE QUEST</span><h3>{crownFound?"The hidden crown is yours!":"Find the hidden crown"}</h3><p>{crownFound?"Well done, Princess Tejashvini. A little sparkle has been collected.":"A tiny crown is hiding somewhere in the castle scene. Can you spot it?"}</p><button className="text-button" onClick={()=>jump("home")}>{crownFound?"Visit the castle again":"Look around the castle"} <span>↗</span></button></article>
         <article className="magic-card story-card"><div className="magic-illustration story-illustration"><span>📚</span><BookOpen/></div><span className="card-overline">A SECRET STORYBOOK</span><h3>A page just for you</h3><p>There is a tiny story tucked away in this little kingdom.</p><button className="text-button" onClick={()=>setStoryOpen(true)}>Turn the page <span>↗</span></button></article>
         <article className="magic-card star-card"><div className="magic-illustration star-illustration"><span>⭐</span><Sparkles/></div><span className="card-overline">A MINI GAME</span><h3>Catch the little stars</h3><p>Tap the stars to collect a pocketful of sparkle.</p><div className="star-game"><div className="game-sky">{stars.map(s=><button key={s.id} className={`game-star ${caught.includes(s.id)?"caught":""}`} style={{left:`${s.left}%`,top:`${s.top}%`,animationDelay:`${s.delay}s`}} onClick={()=>setCaught(old=>old.includes(s.id)?old:[...old,s.id])} aria-label="Catch star">✦</button>)}</div><div className="game-score">Stars collected: <b>{caught.length}/12</b><button onClick={()=>setCaught([])} aria-label="Reset game"><RotateCcw size={13}/></button></div></div></article>
       </div>
@@ -138,7 +141,7 @@ export default function Home() {
       <div className="finale-crown">♕</div><h2>And the magic<br/>goes on <em>and on…</em></h2>
       <p>May this year bring you beautiful places, kind people, unexpected laughter, and a thousand little reasons to feel happy.</p>
       <button className="primary-button finale-button" onClick={()=>setLetterOpen(true)}>Read your little letter <span>♡</span></button>
-      <div className="finale-footnote">HAPPY PRINCESS DAY, TEJASHVINI <span>✦</span></div>
+      <button className="secret-note-trigger" onClick={()=>setSecretNote(v=>!v)}>{secretNote?"You found a little secret ♡":"Psst… one last little secret"}</button>{secretNote&&<motion.p className="secret-note" initial={{opacity:0,y:8}} animate={{opacity:1,y:0}}>Even on an ordinary day, you deserve to feel celebrated. Keep this tiny reminder close. ♡</motion.p>}<div className="finale-footnote">HAPPY PRINCESS DAY, TEJASHVINI <span>✦</span></div>
     </section>
 
     <footer className="site-footer"><span>MADE WITH CARE & A LITTLE BIT OF FAIRY DUST</span><span>♡</span><span>YOUR LITTLE FAIRYTALE · 2026</span></footer>
