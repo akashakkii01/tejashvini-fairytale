@@ -90,8 +90,8 @@ export default function Home() {
         <p className="royal-copy">A few tiny reminders, because you deserve to hear them.</p>
         <div className="compliment-grid">{compliments.map(([icon, title, copy], index) => <button type="button" className={`compliment-card ${activeCompliment === index ? "compliment-card-open" : ""}`} key={title} onClick={() => setActiveCompliment(activeCompliment === index ? -1 : index)} aria-expanded={activeCompliment === index}>
           <span className="compliment-icon">{icon}</span><h3>{title}</h3><p>{copy}</p>
-          <small className="compliment-tap">{activeCompliment === index ? "A little reminder for you" : "Tap to reveal ✦"}</small>
-          {activeCompliment === index && <p className="compliment-reveal">{complimentReveals[index]}</p>}
+          <span className="compliment-open-mark" aria-hidden="true">{activeCompliment === index ? "−" : "✧"}</span>
+          {activeCompliment === index && <div className="compliment-reveal-wrap"><span className="compliment-reveal-label">A LITTLE NOTE FOR YOU</span><p className="compliment-reveal">{complimentReveals[index]}</p></div>}
         </button>)}</div>
         <p className="compliment-progress">{activeCompliment === -1 ? "Choose a little reminder to open" : "One little reminder opened · tap again to close"}</p>
         <button className="royal-button" onClick={() => setScene(3)}>See your royal surprises <span>→</span></button>
