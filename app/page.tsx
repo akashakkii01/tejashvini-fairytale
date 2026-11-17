@@ -49,9 +49,9 @@ export default function Home() {
         <h1>Welcome to your<br /><em>little kingdom</em></h1>
         <p className="royal-copy">A tiny place made to celebrate someone<br />who deserves a little extra magic.</p>
         <div className="castle-stage castle-stage-art">
-          <div className="castle-artwork" role="img" aria-label="A glowing pink fairytale castle beneath a purple starry sky" />
-          <div className="welcome-ribbon">Princess Tejashvini's Kingdom</div>
+          <img className="castle-artwork-full" src="/priness-castle-hero.png" alt="Fairytale castle beneath a moonlit starry sky with a flower-lined path" />
         </div>
+        <div className="welcome-ribbon welcome-ribbon-below">Princess Tejashvini's Kingdom</div>
         <p className="royal-small">Your royal adventure is ready whenever you are.</p>
         <button className="royal-button" onClick={() => setScene(1)}>Enter the kingdom <span>→</span></button>
       </section>}
