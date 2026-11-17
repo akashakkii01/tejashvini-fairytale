@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Music2, Pause, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw } from "lucide-react";
+import { Music2, Pause, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw, Menu } from "lucide-react";
 
 const wishes = [
   "May your days be full of tiny surprises and big smiles.",
@@ -24,14 +24,27 @@ export default function Home() {
   const [message,setMessage]=useState("");
   const [caught,setCaught]=useState<number[]>([]);
   const [musicOn,setMusicOn]=useState(false);
+  const [menuOpen,setMenuOpen]=useState(false);
   const [trackName,setTrackName]=useState("");
   const audioRef=useRef<HTMLAudioElement>(null);
   const inputRef=useRef<HTMLInputElement>(null);
+  const objectUrlRef=useRef<string | null>(null);
+
+  useEffect(()=>()=>{ if(objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current); },[]);
+  useEffect(()=>{
+    const onKeyDown=(event:KeyboardEvent)=>{
+      if(event.key==="Escape"){setGiftOpen(false);setLetterOpen(false);setMenuOpen(false);}
+    };
+    window.addEventListener("keydown",onKeyDown);
+    return ()=>window.removeEventListener("keydown",onKeyDown);
+  },[]);
 
   const pickMusic=()=>inputRef.current?.click();
   const loadMusic=(e:React.ChangeEvent<HTMLInputElement>)=>{
     const file=e.target.files?.[0]; if(!file||!audioRef.current)return;
-    audioRef.current.src=URL.createObjectURL(file);
+    if(objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
+    objectUrlRef.current=URL.createObjectURL(file);
+    audioRef.current.src=objectUrlRef.current;
     audioRef.current.play().then(()=>setMusicOn(true)).catch(()=>setMusicOn(false));
     setTrackName(file.name);
   };
@@ -47,8 +60,10 @@ export default function Home() {
     <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
     <header className="site-header">
       <a className="brand" href="#home"><span className="brand-crown">♕</span><span>TEJASHVINI'S LITTLE WORLD</span></a>
-      <nav className="desktop-nav"><a href="#welcome">Welcome</a><a href="#little-things">Little things</a><a href="#express">Adventure</a><a href="#magic-room">Magic room</a></nav>
+      <nav className="desktop-nav"><a href="#welcome">Welcome</a><a href="#little-things">Little things</a><a href="#express">Adventure</a><a href="#magic-room">Magic room</a><a href="#finale">The wish</a></nav>
+      <button className="mobile-menu-toggle" onClick={()=>setMenuOpen(v=>!v)} aria-label={menuOpen?"Close navigation":"Open navigation"} aria-expanded={menuOpen}><Menu size={18}/></button>
       <button className="music-control" onClick={toggleMusic}>{musicOn?<Pause size={15}/>:<Music2 size={15}/>}<span>{musicOn?"Pause":"Add music"}</span></button>
+      {menuOpen&&<nav className="mobile-nav" aria-label="Mobile navigation"><a onClick={()=>setMenuOpen(false)} href="#welcome">Welcome</a><a onClick={()=>setMenuOpen(false)} href="#little-things">Little things</a><a onClick={()=>setMenuOpen(false)} href="#express">Adventure Express</a><a onClick={()=>setMenuOpen(false)} href="#magic-room">Magic room</a><a onClick={()=>setMenuOpen(false)} href="#finale">The grand wish</a></nav>}
       <input ref={inputRef} className="file-input" type="file" accept="audio/*" onChange={loadMusic}/><audio ref={audioRef} loop/>
     </header>
 
@@ -73,7 +88,7 @@ export default function Home() {
       </motion.div>
     </section>
 
-    <div className="scroll-cue" onClick={()=>jump("welcome")}><span>SCROLL TO EXPLORE</span><ChevronDown size={15}/></div>
+    <button className="scroll-cue" onClick={()=>jump("welcome")}><span>SCROLL TO EXPLORE</span><ChevronDown size={15}/></button>
 
     <section className="welcome-section section-wrap" id="welcome">
       <div className="section-heading"><span className="section-kicker">CHAPTER ONE · THE INVITATION</span><h2>Welcome to your<br/><em>magical little world</em></h2><p>Today, the crown is yours. Take a little wander — there are sweet things tucked around every corner.</p></div>
