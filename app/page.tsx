@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Music2, Pause, Play, Sparkles, Heart, Gift, Crown, TrainFront, Star, BookOpen, PartyPopper, Volume2, ChevronDown, X, RotateCcw } from "lucide-react";
+import { Music2, Pause, Sparkles, Heart, Gift, Crown, TrainFront, ChevronDown, X, RotateCcw } from "lucide-react";
 
 const wishes = [
   "May your days be full of tiny surprises and big smiles.",
