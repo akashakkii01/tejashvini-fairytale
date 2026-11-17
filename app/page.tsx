@@ -48,18 +48,8 @@ export default function Home() {
         <p className="royal-eyebrow">✦ a royal invitation ✦</p>
         <h1>Welcome to your<br /><em>little kingdom</em></h1>
         <p className="royal-copy">A tiny place made to celebrate someone<br />who deserves a little extra magic.</p>
-        <div className="castle-stage">
-          <div className="moon">☾</div>
-          <div className="castle">
-            <div className="castle-tower tower-left"><i /><b /></div>
-            <div className="castle-tower tower-mid"><i /><b /></div>
-            <div className="castle-tower tower-right"><i /><b /></div>
-            <div className="castle-wing wing-left"><i /></div>
-            <div className="castle-wing wing-right"><i /></div>
-            <div className="castle-base"><span className="castle-door" /><span className="castle-window w-one" /><span className="castle-window w-two" /><span className="castle-window w-three" /></div>
-            <div className="castle-flag f-one">⚑</div><div className="castle-flag f-two">⚑</div><div className="castle-flag f-three">⚑</div>
-          </div>
-          <div className="castle-platform"><span>✧</span><span>♡</span><span>✧</span></div>
+        <div className="castle-stage castle-stage-art">
+          <div className="castle-artwork" role="img" aria-label="A glowing pink fairytale castle beneath a purple starry sky" />
           <div className="welcome-ribbon">Princess Tejashvini's Kingdom</div>
         </div>
         <p className="royal-small">Your royal adventure is ready whenever you are.</p>
