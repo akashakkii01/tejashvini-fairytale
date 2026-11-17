@@ -355,3 +355,52 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
 @media(prefers-reduced-motion:reduce){
   .welcome-scene .moon,.welcome-scene .castle-stage:before,.welcome-scene .castle-stage:after{animation:none}
 }
+
+
+/* Real fairytale castle artwork on the welcome screen */
+.welcome-scene .castle-stage-art{
+  display:block;
+  width:min(680px,94vw);
+  height:auto;
+  aspect-ratio:16/9;
+  margin:18px auto 12px;
+  position:relative;
+  overflow:visible;
+}
+.welcome-scene .castle-artwork{
+  position:absolute;
+  inset:0;
+  border:1px solid #ffd9f5;
+  border-radius:22px;
+  background-image:
+    linear-gradient(180deg,rgba(16,7,42,.02) 45%,rgba(20,7,43,.24) 100%),
+    url("/priness-castle-hero.png");
+  background-size:cover;
+  background-position:center 54%;
+  box-shadow:0 0 0 5px #f6b8ef12,0 0 32px 8px #ed8cdd55,0 18px 38px #09051e88;
+}
+.welcome-scene .castle-stage-art .welcome-ribbon{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  bottom:-17px;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  margin:0;
+}
+@media(max-width:600px){
+  .welcome-scene .castle-stage-art{
+    width:min(94vw,520px);
+    margin-top:20px;
+    margin-bottom:30px;
+  }
+  .welcome-scene .castle-artwork{
+    border-radius:16px;
+    background-position:center center;
+  }
+  .welcome-scene .castle-stage-art .welcome-ribbon{
+    bottom:-16px;
+    font-size:12px;
+    padding:8px 15px;
+  }
+}
