@@ -585,24 +585,3 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
   .welcome-scene .welcome-enter{min-width:76%;padding:13px 22px}
 }
 
-
-/* The poster already contains its plaque and CTA: remove duplicate external elements.
-   Keep a transparent, accessible hit-area over the illustrated CTA so it remains clickable. */
-.welcome-image-enter{
-  position:absolute;
-  z-index:6;
-  left:23%;
-  top:78%;
-  width:54%;
-  height:10%;
-  padding:0;
-  border:0;
-  border-radius:48px;
-  background:transparent;
-  cursor:pointer;
-}
-.welcome-image-enter:focus-visible{
-  outline:3px solid #fff1b8;
-  outline-offset:3px;
-  box-shadow:0 0 20px #ffd98c;
-}
