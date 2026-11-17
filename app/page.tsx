@@ -30,7 +30,6 @@ export default function Home() {
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
-  const [musicOn, setMusicOn] = useState(false);
 
   return (
     <main className="kingdom">
@@ -39,7 +38,7 @@ export default function Home() {
       </div>
       <header className="royal-nav">
         <span className="royal-mark">♕ <b>YOUR LITTLE KINGDOM</b></span>
-        <button className="music-chip" onClick={() => setMusicOn(!musicOn)} aria-pressed={musicOn}>{musicOn ? "♫ Music on" : "♪ Music off"}</button>
+        <span className="music-chip">♡ made with care</span>
       </header>
 
       <div className="royal-progress"><span style={{ width: `${(scene + 1) * 20}%` }} /></div>
