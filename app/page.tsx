@@ -88,12 +88,26 @@ export default function Home() {
         <p className="royal-eyebrow">✦ little things worth celebrating ✦</p>
         <h2>Do you know how<br /><em>special you are?</em></h2>
         <p className="royal-copy">A few tiny reminders, because you deserve to hear them.</p>
-        <div className="compliment-grid">{compliments.map(([icon, title, copy], index) => <button type="button" className={`compliment-card ${activeCompliment === index ? "compliment-card-open" : ""}`} key={title} onClick={() => setActiveCompliment(activeCompliment === index ? -1 : index)} aria-expanded={activeCompliment === index}>
-          <span className="compliment-icon">{icon}</span><h3>{title}</h3><p>{copy}</p>
-          <span className="compliment-open-mark" aria-hidden="true">{activeCompliment === index ? "−" : "✧"}</span>
-          {activeCompliment === index && <div className="compliment-reveal-wrap"><span className="compliment-reveal-label">A LITTLE NOTE FOR YOU</span><p className="compliment-reveal">{complimentReveals[index]}</p></div>}
-        </button>)}</div>
-        <p className="compliment-progress">{activeCompliment === -1 ? "Choose a little reminder to open" : "One little reminder opened · tap again to close"}</p>
+        <div className="compliment-constellation" aria-label="Choose a star to discover a compliment">
+          <div className="constellation-line constellation-line-one" />
+          <div className="constellation-line constellation-line-two" />
+          <div className="constellation-line constellation-line-three" />
+          {compliments.map(([icon, title], index) => <button type="button" key={title} className={`constellation-star ${activeCompliment === index ? "is-selected" : ""}`} onClick={() => setActiveCompliment(index)} aria-label={`Discover: ${title}`} aria-pressed={activeCompliment === index}>
+            <span className="constellation-star-icon">{icon}</span><span className="constellation-star-name">{title}</span>
+          </button>)}
+        </div>
+        <div className="constellation-message" aria-live="polite">
+          {activeCompliment === -1 ? <>
+            <span className="constellation-message-kicker">A LITTLE CONSTELLATION FOR YOU</span>
+            <p>Six little things that make you shine.</p>
+            <span className="constellation-message-hint">Choose any star above ✦</span>
+          </> : <>
+            <span className="constellation-message-kicker">{compliments[activeCompliment][0]} &nbsp; A LITTLE THING WE LOVE</span>
+            <h3>{compliments[activeCompliment][1]}</h3>
+            <p>{compliments[activeCompliment][2]}</p>
+            <span className="constellation-message-note">{complimentReveals[activeCompliment]}</span>
+          </>}
+        </div>
         <button className="royal-button" onClick={() => setScene(3)}>See your royal surprises <span>→</span></button>
         <button className="royal-back" onClick={() => setScene(1)}>← Back</button>
       </section>}
