@@ -146,3 +146,19 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
 @keyframes royalRise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:480px){.kingdom{padding-left:16px;padding-right:16px}.royal-scene{padding-top:28px}.castle-stage{height:285px;transform:scale(.94);transform-origin:top center;margin-bottom:-8px}.compliment-grid{gap:8px}.compliment-card{padding:13px 9px}.compliment-card p{font-size:9px}.royal-envelope{height:292px}.envelope-paper{height:262px;padding:18px 15px}.envelope-paper p{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.sky-star{animation:none}.royal-scene{animation:none}.royal-button{transition:none}}
+
+
+/* Mobile welcome-screen spacing correction */
+@media(max-width:600px){
+  .welcome-scene .castle-stage{
+    height:350px;
+    margin-top:38px;
+    margin-bottom:8px;
+  }
+  .welcome-scene .castle{
+    transform:translateY(15px);
+  }
+  .welcome-scene .castle-platform{
+    transform:translateY(15px);
+  }
+}
