@@ -45,15 +45,17 @@ export default function Home() {
       <div className="scene-count">A LITTLE FAIRYTALE · {scene + 1} / 5</div>
 
       {scene === 0 && <section className="royal-scene welcome-scene">
-        <p className="royal-eyebrow">✦ a royal invitation ✦</p>
-        <h1>Welcome to your<br /><em>little kingdom</em></h1>
-        <p className="royal-copy">A tiny place made to celebrate someone<br />who deserves a little extra magic.</p>
-        <div className="castle-stage castle-stage-art">
-          <img className="castle-artwork-full" src="/priness-castle-hero.png" alt="Fairytale castle beneath a moonlit starry sky with a flower-lined path" />
-        </div>
-        <div className="welcome-ribbon welcome-ribbon-below">Princess Tejashvini's Kingdom</div>
-        <p className="royal-small">Your royal adventure is ready whenever you are.</p>
-        <button className="royal-button" onClick={() => setScene(1)}>Enter the kingdom <span>→</span></button>
+        <button
+          className="castle-poster-button"
+          onClick={() => setScene(1)}
+          aria-label="Enter Princess Tejashvini's Kingdom"
+        >
+          <img
+            className="castle-artwork-full"
+            src="/priness-castle-hero.png"
+            alt="Welcome to your Little Kingdom: Princess Tejashvini's Kingdom, with an Enter the Kingdom invitation"
+          />
+        </button>
       </section>}
 
       {scene === 1 && <section className="royal-scene princess-scene">
