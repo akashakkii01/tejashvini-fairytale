@@ -859,3 +859,55 @@ body:has(.kingdom-welcome){
   .compliments-scene .compliment-card p{font-size:10px;line-height:1.55}
   .compliments-scene .royal-button{width:min(310px,88vw);font-size:11px;padding:13px 14px}
 }
+
+
+/* Interactive compliment cards — tap to reveal a hidden affirmation */
+.compliments-scene .compliment-card{
+  width:100%;
+  font:inherit;
+  color:inherit;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  text-align:center;
+}
+.compliments-scene .compliment-card:focus-visible{
+  outline:2px solid #ffe2ad;
+  outline-offset:3px;
+}
+.compliments-scene .compliment-tap{
+  display:block;
+  margin-top:10px;
+  color:#f4bde8;
+  font-size:8px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  opacity:.85;
+}
+.compliments-scene .compliment-card-open{
+  min-height:190px;
+  border-color:#ffe0b8;
+  background:radial-gradient(circle at 50% 0%,#ffd6f333,transparent 68%),linear-gradient(145deg,#ffffff24,#d94bb42b);
+  box-shadow:inset 0 1px #fff4,0 0 22px #ef9cdb30,0 10px 25px #09051f30;
+}
+.compliments-scene .compliment-reveal{
+  margin:10px 0 0;
+  padding-top:9px;
+  width:100%;
+  border-top:1px solid #ffe2f455;
+  color:#ffe4b9;
+  font-family:'Playfair Display',serif;
+  font-size:11px;
+  line-height:1.5;
+  animation:royalRise .3s both;
+}
+.compliments-scene .compliment-progress{
+  margin:-8px 0 12px;
+  color:#dcb9e8;
+  font-size:9px;
+  letter-spacing:.5px;
+}
+@media(max-width:480px){
+  .compliments-scene .compliment-card-open{min-height:188px}
+  .compliments-scene .compliment-tap{font-size:7px;margin-top:8px}
+  .compliments-scene .compliment-reveal{font-size:10px;margin-top:8px;padding-top:7px}
+}
