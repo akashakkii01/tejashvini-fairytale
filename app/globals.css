@@ -248,3 +248,110 @@ h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:#725365}
 @media(prefers-reduced-motion:reduce){
   .princess-art-refined:before,.princess-art-refined:after{animation:none}
 }
+
+
+/* Welcome castle — richer enchanted royal architecture */
+.welcome-scene .castle-stage{
+  height:330px;
+  margin-top:8px;
+  margin-bottom:7px;
+  perspective:900px;
+}
+.welcome-scene .castle{
+  width:286px;
+  height:205px;
+  margin-top:48px;
+  transform:translateY(3px);
+  filter:drop-shadow(0 18px 24px #09031f99) drop-shadow(0 0 22px #f06bd766);
+}
+.welcome-scene .castle-base{
+  left:38px;
+  width:210px;
+  height:111px;
+  background:linear-gradient(90deg,#71358f 0%,#b84fc0 18%,#f19bdf 49%,#bd58c6 78%,#71358f 100%);
+  clip-path:polygon(0 10%,50% 0,100% 10%,100% 100%,0 100%);
+  border:1px solid #ffd2f4;
+  box-shadow:inset 0 8px 18px #ffd4f633,inset 0 -12px 18px #4b176d66;
+}
+.welcome-scene .castle-base:before{
+  content:"";
+  position:absolute;
+  left:9px;right:9px;top:12px;height:2px;
+  background:linear-gradient(90deg,transparent,#ffe4fa,transparent);
+  box-shadow:0 0 12px #ffe4fa;
+}
+.welcome-scene .castle-door{
+  left:86px;width:38px;height:59px;
+  background:linear-gradient(90deg,#24113f,#633075);
+  border:2px solid #f7c6f2;border-bottom:0;
+  box-shadow:0 0 15px #ffb9eb66;
+}
+.welcome-scene .castle-window{
+  background:linear-gradient(#fffbd0,#ffc86f);
+  box-shadow:0 0 8px #fff0a6,0 0 19px #ffd16c,0 0 30px #ff9fdc88;
+}
+.welcome-scene .castle-tower{
+  background:linear-gradient(90deg,#76358f,#d56bd0 48%,#f3a7e5 55%,#9d45b3);
+  border:1px solid #ffd4f4;
+  box-shadow:inset 0 0 13px #ffe3fb55,0 0 16px #f48cdd55;
+}
+.welcome-scene .castle-tower i{
+  background:linear-gradient(90deg,#5b4ca9,#a58af5 52%,#6c58c4);
+  filter:drop-shadow(0 0 8px #d6baff88);
+  border-bottom:2px solid #ffe0fa;
+}
+.welcome-scene .castle-tower b{
+  background:linear-gradient(#fffbd3,#ffc86c);
+  box-shadow:0 0 9px #fff2a7,0 0 19px #ffd16c;
+}
+.welcome-scene .castle-wing{
+  background:linear-gradient(90deg,#8840a5,#dc72d1,#9d42ac);
+  border:1px solid #ffc9f0;
+}
+.welcome-scene .castle-wing i{
+  background:linear-gradient(90deg,#6253b5,#a28af0,#6253b5);
+  filter:drop-shadow(0 0 7px #c7aaff88);
+}
+.welcome-scene .castle-flag{
+  color:#ffe1a6;
+  text-shadow:0 0 10px #ffb9ed,0 0 18px #f17bd7;
+}
+.welcome-scene .castle-platform{
+  width:310px;height:42px;
+  background:linear-gradient(90deg,#a83eaa,#f08bdc 30%,#ffe1ad 50%,#ed80d8 72%,#9d39a6);
+  box-shadow:0 0 18px #f36bd899,0 10px 35px #f14bc766,inset 0 2px 5px #fff5dcaa;
+}
+.welcome-scene .moon{
+  right:30px;top:0;
+  font-size:49px;
+  color:#fff0c9;
+  text-shadow:0 0 9px #fff0c9,0 0 24px #ffe2a6,0 0 42px #ffb7e9;
+  animation:moonFloat 5s ease-in-out infinite;
+}
+.welcome-scene .castle-stage:before,
+.welcome-scene .castle-stage:after{
+  content:"✦";
+  position:absolute;
+  z-index:3;
+  color:#fff0b8;
+  font-size:17px;
+  text-shadow:0 0 9px #ffe4a6,0 0 18px #f58cde;
+  animation:castleGlint 2.7s ease-in-out infinite;
+}
+.welcome-scene .castle-stage:before{left:8%;top:34%;animation-delay:.8s}
+.welcome-scene .castle-stage:after{right:9%;top:57%;font-size:13px;animation-delay:1.7s}
+.welcome-scene .welcome-ribbon{
+  border-color:#ffe0ae;
+  background:linear-gradient(90deg,#71318e,#b83caa 48%,#78328e);
+  box-shadow:0 0 18px #e55bc966,0 7px 22px #e45bc455,inset 0 1px #fff5d966;
+}
+@keyframes moonFloat{0%,100%{transform:translateY(0) rotate(-20deg)}50%{transform:translateY(-7px) rotate(-15deg)}}
+@keyframes castleGlint{0%,100%{opacity:.25;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(25deg)}}
+@media(max-width:600px){
+  .welcome-scene .castle-stage{height:350px;margin-top:24px}
+  .welcome-scene .castle{transform:translateY(12px) scale(.94)}
+  .welcome-scene .castle-platform{transform:translateY(12px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .welcome-scene .moon,.welcome-scene .castle-stage:before,.welcome-scene .castle-stage:after{animation:none}
+}
