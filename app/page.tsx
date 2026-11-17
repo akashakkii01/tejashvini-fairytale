@@ -39,7 +39,7 @@ export default function Home() {
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
-  const [activeCompliment, setActiveCompliment] = useState(-1);
+  const [activeCompliment, setActiveCompliment] = useState(0);
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
@@ -88,7 +88,7 @@ export default function Home() {
         <p className="royal-eyebrow">✦ little things worth celebrating ✦</p>
         <h2>Do you know how<br /><em>special you are?</em></h2>
         <p className="royal-copy">A few tiny reminders, because you deserve to hear them.</p>
-        <div className="compliment-constellation" aria-label="Choose a star to discover a compliment">
+        <div className="compliment-constellation" aria-label="Choose a star to discover a compliment">\n          <div className="constellation-orbit" aria-hidden="true"><span>♕</span><small>TEJASHVINI</small></div>
           <div className="constellation-line constellation-line-one" />
           <div className="constellation-line constellation-line-two" />
           <div className="constellation-line constellation-line-three" />
@@ -96,7 +96,7 @@ export default function Home() {
             <span className="constellation-star-icon">{icon}</span><span className="constellation-star-name">{title}</span>
           </button>)}
         </div>
-        <div className="constellation-message" aria-live="polite">
+        <div className="constellation-message" key={activeCompliment} aria-live="polite">
           {activeCompliment === -1 ? <>
             <span className="constellation-message-kicker">A LITTLE CONSTELLATION FOR YOU</span>
             <p>Six little things that make you shine.</p>
