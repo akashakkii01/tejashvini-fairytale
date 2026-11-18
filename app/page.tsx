@@ -130,6 +130,7 @@ export default function Home() {
           <div className="train-stops">
             {[["🌸","The Flower Shop","A garden of little blooms"],["⭐","The Starlight Stop","A sky full of wishes"],["🏰","The Royal Castle","A royal surprise awaits"]].map(([icon,title,subtitle],index)=><button type="button" key={title} className={"train-stop "+(trainStop===index?"train-stop-active":"")} onClick={()=>{setTrainStop(index);setDestinationChoice(0);setOpenDestination(index);}} aria-label={"Open "+title}><span>{icon}</span><b>{title}</b><small>{subtitle}</small><i>Enter destination →</i></button>)}
           </div>
+          <button className="royal-button train-continue-gifts" onClick={()=>{setOpenDestination(-1);setScene(4);}}>Continue to Gifts <span>→</span></button>
           <button className="royal-back" onClick={()=>setScene(2)}>← Back to compliments</button>
         </> : <div className={"destination-world destination-world-"+openDestination}>
           <p className="royal-eyebrow">✦ destination {openDestination+1} of 3 ✦</p>
@@ -140,6 +141,7 @@ export default function Home() {
           {openDestination===1 && <><div className="destination-display star-display"><span>✦</span><span>✧</span><span>★</span><span>✧</span><span>✦</span></div><h3 className="destination-prompt">Pick a star for your wish</h3><div className="destination-choices">{["Dreams","Happiness","Magic"].map((name,i)=><button key={name} className={destinationChoice===i?"choice-active":""} onClick={()=>setDestinationChoice(i)}><span>{["🌠","💫","✨"][i]}</span><b>{name}</b></button>)}</div><div className="destination-reveal"><b>{["A wish for your dreams","A wish for happiness","A wish for everyday magic"][destinationChoice]}</b><p>{["May you always find the courage to chase what makes your heart happy.","May laughter, peace and lovely people find you wherever you go.","May ordinary days surprise you with extraordinary little moments."][destinationChoice]}</p></div></>}
           {openDestination===2 && <><div className="destination-display castle-display"><span>🕯️</span><span>👸</span><span>🕯️</span></div><h3 className="destination-prompt">The royal hall has a surprise</h3><div className="castle-surprise"><span>👸</span><b>A crown made of kindness</b><p>For a princess whose warmth, dreams and little acts of kindness make her kingdom brighter.</p></div><button className="castle-blessing" onClick={()=>setDestinationChoice(destinationChoice===0?1:0)}>{destinationChoice===0?"Receive your royal blessing ✨":"Your blessing is yours to keep ♡"}</button></>}
           <button className="destination-return" onClick={()=>setOpenDestination(-1)}>← Return to the Adventure Express</button>
+          <button className="royal-button train-continue-gifts" onClick={()=>{setOpenDestination(-1);setScene(4);}}>Continue to Gifts <span>→</span></button>
         </div>}
       </section>}
 
