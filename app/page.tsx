@@ -157,12 +157,22 @@ export default function Home() {
 
       {scene === 5 && <section className="royal-scene finale-scene">
         <p className="royal-eyebrow">✦ sealed with a little love ✦</p>
-        <h2>A Little Letter from<br /><em>Your Biggest Admirer</em> 💌</h2>
-        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpened(true); }} aria-label="Open the princess day letter">
-          <div className="envelope-paper"><span>Dear Princess Tejashvini,</span><p>I hope you have a day filled with smiles, sweet surprises and all the happiness you deserve. Never forget how wonderful you are, and never stop being the person who makes little moments brighter.</p><p>Keep dreaming big, laughing often and shining in your own way. The world is a little more lovely with you in it.</p><b>Happy Princess Day! ♡</b><small>— From someone wishing you the very best</small></div>
+        <h2>A Little Letter<br /><em>Just for You</em> 💌</h2>
+        <p className="letter-intro">One last little surprise before your fairytale ends.</p>
+        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpened(true); }} aria-label="Open the Princess Day letter" aria-expanded={opened}>
+          <div className="envelope-paper">
+            <span className="letter-paper-kicker">A LITTLE NOTE, WITH WARM WISHES</span>
+            <span className="letter-dear">Dear Tejashvini,</span>
+            <p>I hope today brings you the kind of happiness that stays with you long after the day is over — the easy laughter, the lovely surprises and the little moments that make you smile for no particular reason.</p>
+            <p>Keep being curious, keep chasing the dreams that make your eyes light up, and never feel you have to be anyone other than yourself. Your kindness, your voice and the way you bring your own colour to ordinary moments are worth celebrating.</p>
+            <p>May the days ahead be gentle, your plans exciting, and your heart always full of reasons to smile.</p>
+            <b>Happy Princess Day! ♡</b>
+            <small>With warm wishes, always ✨</small>
+          </div>
           <div className="envelope-pocket" /><div className="envelope-seal">👸</div>
         </div>
-        {!opened && <p className="tap-envelope">Tap the envelope to open your letter ♡</p>}
+        {!opened && <p className="tap-envelope">Tap the envelope to unfold your little letter ♡</p>}
+        {opened && <p className="letter-open-caption">A little reminder: you deserve all the good things coming your way. ♡</p>}
         <div className="final-gift-wrap">
           <button className={`final-gift ${giftOpened ? "unwrapped" : ""}`} onClick={() => setGiftOpened(true)} aria-label="Open a final little gift"><span>🎀</span><b>?</b></button>
           {giftOpened && <div className="wish-reveal"><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Another little wish ↻</button></div>}
