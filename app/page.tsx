@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
-      <h1 className="sr-only">A Little Fairytale for Tejashvini — Happy Princess Day</h1>
+      <h1 className="sr-only">A Little Fairytale for Tejaswinni — Happy Princess Day</h1>
       <div className="night-sky" aria-hidden="true">
         {Array.from({ length: 34 }, (_, i) => <i key={i} className="sky-star" style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 4) % 78}%`, animationDelay: `${(i % 7) * .4}s` }}>✦</i>)}
       </div>
@@ -70,12 +70,12 @@ export default function Home() {
         <button
           className="castle-poster-button"
           onClick={() => setScene(1)}
-          aria-label="Enter Princess Tejashvini's World"
+          aria-label="Enter Princess Tejaswinni's World"
         >
           <img
             className="castle-artwork-full"
             src="/princess-world-poster-clean.png"
-            alt="Princess Tejashvini's Magical World, a glowing fairytale castle welcome poster"
+            alt="Princess Tejaswinni's Magical World, a glowing fairytale castle welcome poster"
           />
         </button>
       </section>}
@@ -86,7 +86,7 @@ export default function Home() {
         <div className="princess-art princess-art-refined">
           <img
             src="/princess-tejashvini-web.jpg"
-            alt="Princess Tejashvini in a fairytale royal portrait"
+            alt="Princess Tejaswinni in a fairytale royal portrait"
             className="princess-portrait-image"
           />
         </div>
@@ -177,7 +177,7 @@ export default function Home() {
         <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpened(true); } }} aria-label="Open the Princess Day letter" aria-expanded={opened} aria-controls="princess-letter-content">
           <div className="envelope-paper" id="princess-letter-content">
             <span className="letter-paper-kicker">A LITTLE NOTE, WITH WARM WISHES</span>
-            <span className="letter-dear">Dear Tejashvini,</span>
+            <span className="letter-dear">Dear Tejaswinni,</span>
             <p>I hope today brings you the kind of happiness that stays with you long after the day is over — the easy laughter, the lovely surprises and the little moments that make you smile for no particular reason.</p>
             <p>Keep being curious, keep chasing the dreams that make your eyes light up, and never feel you have to be anyone other than yourself. Your kindness, your voice and the way you bring your own colour to ordinary moments are worth celebrating.</p>
             <p>May the days ahead be gentle, your plans exciting, and your heart always full of reasons to smile.</p>
