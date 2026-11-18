@@ -183,7 +183,7 @@ export default function Home() {
         {opened && <p className="letter-open-caption">A little reminder: you deserve all the good things coming your way. ♡</p>}
         <div className="final-gift-wrap">
           <button className={`final-gift ${giftOpened ? "unwrapped" : ""}`} onClick={() => setGiftOpened(true)} aria-label="Open a final little gift"><span>🎀</span><b>?</b></button>
-          {giftOpened && <div className="wish-reveal"><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Another little wish ↻</button></div>}
+          {giftOpened && <div className="wish-reveal"><span className="wish-reveal-kicker">✦ A LITTLE WISH, JUST FOR YOU ✦</span><div className="wish-reveal-sparkles" aria-hidden="true">✧　♡　✧</div><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Discover another wish <span>↻</span></button></div>}
         </div>
         <p className="final-signoff">Keep shining, Princess. <span>♡</span></p>
         <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); }}>↺ Visit your kingdom again</button>
