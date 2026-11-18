@@ -169,6 +169,7 @@ export default function Home() {
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
+      <h1 className="sr-only">A Little Fairytale for Tejashvini — Happy Princess Day</h1>
       <div className="night-sky" aria-hidden="true">
         {Array.from({ length: 34 }, (_, i) => <i key={i} className="sky-star" style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 4) % 78}%`, animationDelay: `${(i % 7) * .4}s` }}>✦</i>)}
       </div>
