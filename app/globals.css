@@ -1760,3 +1760,50 @@ body:has(.kingdom-welcome){
   .gifts-scene .royal-note span{font-size:21px}
   .gifts-scene .royal-note p{font-size:15px;line-height:1.6}
 }
+
+
+/* Magical transition cue from gifts to the final letter */
+.gifts-scene .final-surprise-prompt{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:7px auto 2px;
+  color:#f8d9f1;
+  font:italic 13px 'Playfair Display',serif;
+  text-shadow:0 0 15px #f2a8e8a6;
+  animation:final-prompt-glow 2.8s ease-in-out infinite;
+}
+.gifts-scene .final-surprise-prompt span{
+  color:#ffe3b5;
+  font-size:11px;
+  animation:final-prompt-sparkle 2s ease-in-out infinite;
+}
+.gifts-scene .final-surprise-prompt span:last-child{animation-delay:1s}
+.gifts-scene .gifts-final-button{
+  position:relative;
+  margin-top:12px;
+  padding:14px 25px;
+  border-color:#ffe1c4;
+  background:linear-gradient(110deg,#c83eaa,#e968c8 55%,#bb64d3);
+  box-shadow:0 8px 26px #e34cb86b, inset 0 1px #ffffff55;
+  animation:final-button-breathe 3s ease-in-out infinite;
+}
+.gifts-scene .gifts-final-button:hover{
+  box-shadow:0 12px 32px #f06acb8c,0 0 24px #ffe0f277;
+}
+@keyframes final-prompt-glow{
+  0%,100%{opacity:.78;text-shadow:0 0 10px #f2a8e866}
+  50%{opacity:1;text-shadow:0 0 19px #f2a8e8c9}
+}
+@keyframes final-prompt-sparkle{
+  0%,100%{opacity:.55;transform:scale(.85) rotate(0)}
+  50%{opacity:1;transform:scale(1.2) rotate(18deg)}
+}
+@keyframes final-button-breathe{
+  0%,100%{box-shadow:0 8px 26px #e34cb85c,inset 0 1px #ffffff55}
+  50%{box-shadow:0 9px 31px #f06acb88,0 0 18px #ffe0f244,inset 0 1px #ffffff66}
+}
+@media(prefers-reduced-motion:reduce){
+  .gifts-scene .final-surprise-prompt,.gifts-scene .final-surprise-prompt span,.gifts-scene .gifts-final-button{animation:none}
+}
