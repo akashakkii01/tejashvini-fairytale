@@ -44,6 +44,7 @@ export default function Home() {
   const [openDestination, setOpenDestination] = useState(-1);
   const [destinationChoice, setDestinationChoice] = useState(0);
   const [activeGift, setActiveGift] = useState(-1);
+  const [unwrappedGifts, setUnwrappedGifts] = useState<number[]>([]);
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
@@ -149,7 +150,11 @@ export default function Home() {
         <p className="royal-eyebrow">✦ specially picked for a princess ✦</p>
         <h2>Your Princess Day<br /><em>Gift Is Here 🎁</em></h2>
         <p className="gift-instruction">Tap each little present to unwrap its wish ♡</p>
-        <div className="gift-list">{gifts.map(([icon, title, copy], index) => <button type="button" className={`gift-row ${activeGift === index ? "gift-row-open" : ""}`} key={title} onClick={() => setActiveGift(activeGift === index ? -1 : index)} aria-expanded={activeGift === index}>
+        <div className="gift-progress" aria-live="polite">
+          <div className="gift-progress-copy"><span>YOUR LITTLE SURPRISES</span><b>{unwrappedGifts.length} / 4 unwrapped</b></div>
+          <div className="gift-progress-track"><span style={{width: `${(unwrappedGifts.length / gifts.length) * 100}%`}} /></div>
+        </div>
+        <div className="gift-list">{gifts.map(([icon, title, copy], index) => <button type="button" className={`gift-row ${activeGift === index ? "gift-row-open" : ""} ${unwrappedGifts.includes(index) ? "gift-row-seen" : ""}`} key={title} onClick={() => {setActiveGift(activeGift === index ? -1 : index);setUnwrappedGifts(current => current.includes(index) ? current : [...current,index]);}} aria-expanded={activeGift === index}>
           <span className="gift-row-icon">{icon}</span><div className="gift-row-copy"><h3>{title}</h3><p>{copy}</p>{activeGift === index && <div className="gift-unwrapped"><b>{["A bouquet of happiness","A little sweetness for your day","A crown for your kind heart","A hug whenever you need one"][index]}</b><small>{["May your days keep blooming with laughter, friendship and beautiful surprises.","I hope life brings you countless sweet moments and lovely memories.","Keep shining in your own way. Your grace is your very own crown.","Even on a difficult day, remember that someone is wishing you well."][index]}</small></div>}</div><b className="gift-row-mark">{activeGift === index ? "−" : "+"}</b>
         </button>)}</div>
         <div className="royal-note"><span>✧ A little note for you ✧</span><p>These gifts may be imaginary, but the wish behind them is real: I hope your day is as lovely as you are.</p></div>
