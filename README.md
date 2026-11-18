@@ -1,4 +1,4 @@
-# Tejashvini's Little Fairytale 🎀
+# Tejaswinni's Little Fairytale 🎀
 
 A pastel fairytale-style Princess Day surprise built with Next.js, React, TypeScript, Tailwind CSS, Framer Motion, and Lucide icons.
 
