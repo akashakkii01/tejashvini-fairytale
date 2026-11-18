@@ -40,6 +40,7 @@ export default function Home() {
   const [giftOpened, setGiftOpened] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
   const [activeCompliment, setActiveCompliment] = useState(0);
+  const [trainStop, setTrainStop] = useState(0);
 
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
@@ -51,8 +52,8 @@ export default function Home() {
         <span className="music-chip">♡ made with care</span>
       </header>
 
-      <div className="royal-progress"><span style={{ width: `${(scene + 1) * 20}%` }} /></div>
-      <div className="scene-count">A LITTLE FAIRYTALE · {scene + 1} / 5</div>
+      <div className="royal-progress"><span style={{ width: `${(scene + 1) * (100 / 6)}%` }} /></div>
+      <div className="scene-count">A LITTLE FAIRYTALE · {scene + 1} / 6</div>
 
       {scene === 0 && <section className="royal-scene welcome-scene">
         <button
@@ -109,20 +110,54 @@ export default function Home() {
             <span className="constellation-message-note">{complimentReveals[activeCompliment]}</span>
           </>}
         </div>
-        <button className="royal-button" onClick={() => setScene(3)}>See your royal surprises <span>→</span></button>
+        <button className="royal-button" onClick={() => setScene(3)}>Take the Adventure Express <span>→</span></button>
         <button className="royal-back" onClick={() => setScene(1)}>← Back</button>
       </section>}
 
-      {scene === 3 && <section className="royal-scene gifts-scene">
+      {scene === 3 && <section className="royal-scene train-scene">
+        <p className="royal-eyebrow">✦ all aboard, Princess ✦</p>
+        <h2>Your Adventure<br /><em>Express 🚂</em></h2>
+        <p className="royal-copy">A tiny journey with three little surprises, made just for you.</p>
+        <div className="train-landscape" aria-label="A magical train journey">
+          <div className="train-moon">☾</div>
+          <div className="train-cloud train-cloud-one">☁</div>
+          <div className="train-cloud train-cloud-two">☁</div>
+          <div className="train-hills"><i></i><i></i></div>
+          <div className="train-track"><span></span><span></span><span></span><span></span><span></span></div>
+          <div className="storybook-train"><span className="train-smoke">✧</span><span className="train-engine">🚂</span><span className="train-car">🎀</span><span className="train-car">🌷</span><span className="train-wheel">●</span></div>
+        </div>
+        <div className="train-stops">
+          {[
+            ["🌸", "The Garden Stop", "May your days bloom with lovely little moments."],
+            ["⭐", "The Starlight Stop", "May every dream you hold find its way to you."],
+            ["🏰", "The Castle Stop", "And may you always remember how special you are."]
+          ].map(([icon, title, message], index) => <button type="button" key={title} className={`train-stop ${trainStop === index ? "train-stop-active" : ""} ${trainStop > index ? "train-stop-visited" : ""}`} onClick={() => setTrainStop(index)} aria-pressed={trainStop === index}>
+            <span>{icon}</span><b>{title}</b><small>{trainStop > index ? "Visited ✓" : trainStop === index ? "Now arriving" : "Next stop"}</small>
+          </button>)}
+        </div>
+        <div className="train-ticket" aria-live="polite">
+          <span>✦ STOP {trainStop + 1} OF 3 ✦</span>
+          <h3>{["A little bloom for you", "A wish upon a star", "Your very own fairytale"][trainStop]}</h3>
+          <p>{[
+            "May your days bloom with lovely little moments, kind people and reasons to smile.",
+            "May every dream you hold close find its way into a beautiful tomorrow.",
+            "No matter where life takes you, never forget that you deserve all the happiness in the world."
+          ][trainStop]}</p>
+        </div>
+        <button className="royal-button" onClick={() => trainStop < 2 ? setTrainStop(trainStop + 1) : setScene(4)}>{trainStop < 2 ? "Next little stop" : "Arrive at your gifts"} <span>→</span></button>
+        <button className="royal-back" onClick={() => setScene(2)}>← Back</button>
+      </section>}
+
+      {scene === 4 && <section className="royal-scene gifts-scene">
         <p className="royal-eyebrow">✦ specially picked for a princess ✦</p>
         <h2>Your Princess Day<br /><em>Gift Is Here 🎁</em></h2>
         <div className="gift-list">{gifts.map(([icon, title, copy]) => <article className="gift-row" key={title}><span>{icon}</span><div><h3>{title}</h3><p>{copy}</p></div><b>♡</b></article>)}</div>
         <div className="royal-note"><span>✧ A little note for you ✧</span><p>These gifts may be imaginary, but the wish behind them is real: I hope your day is as lovely as you are.</p></div>
-        <button className="royal-button" onClick={() => setScene(4)}>One last thing, Princess <span>→</span></button>
-        <button className="royal-back" onClick={() => setScene(2)}>← Back</button>
+        <button className="royal-button" onClick={() => setScene(5)}>One last thing, Princess <span>→</span></button>
+        <button className="royal-back" onClick={() => setScene(3)}>← Back</button>
       </section>}
 
-      {scene === 4 && <section className="royal-scene finale-scene">
+      {scene === 5 && <section className="royal-scene finale-scene">
         <p className="royal-eyebrow">✦ sealed with a little love ✦</p>
         <h2>A Little Letter from<br /><em>Your Biggest Admirer</em> 💌</h2>
         <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpened(true); }} aria-label="Open the princess day letter">
