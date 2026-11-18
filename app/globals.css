@@ -1702,3 +1702,61 @@ body:has(.kingdom-welcome){
 @media(prefers-reduced-motion:reduce){
   .gifts-scene .gift-row-open .gift-row-icon,.gifts-scene .gift-unwrapped{animation:none}
 }
+
+
+/* A Little Note for You — handwritten keepsake */
+.gifts-scene .royal-note{
+  position:relative;
+  isolation:isolate;
+  width:min(100%,480px);
+  margin:8px auto 22px;
+  padding:25px 25px 23px;
+  overflow:hidden;
+  border:1px solid #f6d6b98c;
+  border-radius:5px 19px 5px 19px;
+  background:
+    radial-gradient(ellipse at 12% 0%,#fff8d7 0%,transparent 48%),
+    linear-gradient(145deg,#fff9e9 0%,#f9e8f4 100%);
+  box-shadow:0 14px 34px #08051f3b,inset 0 0 0 5px #ffffff8c,inset 0 0 0 6px #d9a7c466;
+  transform:rotate(-.45deg);
+}
+.gifts-scene .royal-note:before,
+.gifts-scene .royal-note:after{
+  position:absolute;
+  z-index:-1;
+  color:#d59bb7;
+  opacity:.6;
+  font-family:'Playfair Display',serif;
+  pointer-events:none;
+}
+.gifts-scene .royal-note:before{
+  content:"✦";
+  top:10px;
+  left:13px;
+  font-size:15px;
+}
+.gifts-scene .royal-note:after{
+  content:"✧";
+  right:14px;
+  bottom:9px;
+  font-size:22px;
+}
+.gifts-scene .royal-note span{
+  display:block;
+  margin:0 0 12px;
+  color:#a66b8c;
+  font:600 22px 'Caveat',cursive;
+  letter-spacing:.2px;
+}
+.gifts-scene .royal-note p{
+  max-width:390px;
+  margin:0 auto;
+  color:#806276;
+  font:500 16px/1.65 'Caveat',cursive;
+  letter-spacing:.15px;
+}
+@media(max-width:480px){
+  .gifts-scene .royal-note{padding:22px 19px 21px;margin:7px auto 19px}
+  .gifts-scene .royal-note span{font-size:21px}
+  .gifts-scene .royal-note p{font-size:15px;line-height:1.6}
+}
