@@ -41,6 +41,7 @@ export default function Home() {
     let timer: ReturnType<typeof setInterval> | undefined;
     let step = 0;
     let started = false;
+    let starting = false;
     const melody = [659.25, 783.99, 987.77, 783.99, 698.46, 880, 987.77, 1174.66, 987.77, 880, 783.99, 698.46, 659.25, 698.46, 783.99, 659.25];
     const chords = [
       [261.63, 329.63, 392],
@@ -50,10 +51,11 @@ export default function Home() {
     ];
 
     const startMusic = () => {
-      if (started) return;
+      if (started || starting) return;
+      starting = true;
       try {
         const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        if (!AudioContextClass) return;
+        if (!AudioContextClass) { starting = false; return; }
         context = new AudioContextClass();
         const master = context.createGain();
         master.gain.value = 0.22;
@@ -113,22 +115,33 @@ export default function Home() {
         };
 
         void context.resume().then(() => {
-          if (context?.state !== "running") return;
+          starting = false;
+          if (context?.state !== "running") {
+            if (context && context.state !== "closed") void context.close();
+            context = undefined;
+            return;
+          }
           started = true;
+          document.removeEventListener("pointerdown", onFirstInteraction);
+          document.removeEventListener("keydown", onFirstInteraction);
           playPhrase();
           timer = setInterval(playPhrase, 680);
         }).catch(() => {
+          starting = false;
           if (context && context.state !== "closed") void context.close();
           context = undefined;
         });
       } catch {
+        starting = false;
+        if (context && context.state !== "closed") void context.close();
+        context = undefined;
         // Audio is optional; the website remains fully usable if unavailable.
       }
     };
 
     const onFirstInteraction = () => startMusic();
-    document.addEventListener("pointerdown", onFirstInteraction, { once: true });
-    document.addEventListener("keydown", onFirstInteraction, { once: true });
+    document.addEventListener("pointerdown", onFirstInteraction);
+    document.addEventListener("keydown", onFirstInteraction);
 
     return () => {
       document.removeEventListener("pointerdown", onFirstInteraction);
