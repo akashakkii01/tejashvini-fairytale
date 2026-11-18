@@ -40,9 +40,14 @@ export default function Home() {
     let context: AudioContext | undefined;
     let timer: ReturnType<typeof setInterval> | undefined;
     let step = 0;
-    let master: GainNode | undefined;
     let started = false;
-    const melody = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 783.99, 1046.5, 783.99, 698.46, 659.25, 587.33, 523.25, 587.33, 659.25, 523.25];
+    const melody = [659.25, 783.99, 987.77, 783.99, 698.46, 880, 987.77, 1174.66, 987.77, 880, 783.99, 698.46, 659.25, 698.46, 783.99, 659.25];
+    const chords = [
+      [261.63, 329.63, 392],
+      [220, 261.63, 329.63],
+      [174.61, 220, 261.63],
+      [196, 246.94, 293.66]
+    ];
 
     const startMusic = () => {
       if (started) return;
@@ -50,30 +55,60 @@ export default function Home() {
         const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
         if (!AudioContextClass) return;
         context = new AudioContextClass();
-        master = context.createGain();
-        master.gain.value = 0.035;
+        const master = context.createGain();
+        master.gain.value = 0.22;
         master.connect(context.destination);
 
-        const playNote = (frequency: number, startAt: number) => {
-          if (!context || !master) return;
-          const oscillator = context.createOscillator();
+        const playBell = (frequency: number, at: number, volume = 0.16) => {
+          if (!context) return;
+          const voice = context.createOscillator();
+          const overtone = context.createOscillator();
           const envelope = context.createGain();
-          oscillator.type = "sine";
-          oscillator.frequency.setValueAtTime(frequency, startAt);
-          envelope.gain.setValueAtTime(0.0001, startAt);
-          envelope.gain.exponentialRampToValueAtTime(0.7, startAt + 0.08);
-          envelope.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.05);
-          oscillator.connect(envelope);
+          voice.type = "sine";
+          overtone.type = "sine";
+          voice.frequency.setValueAtTime(frequency, at);
+          overtone.frequency.setValueAtTime(frequency * 2.01, at);
+          envelope.gain.setValueAtTime(0.0001, at);
+          envelope.gain.exponentialRampToValueAtTime(volume, at + 0.025);
+          envelope.gain.exponentialRampToValueAtTime(0.0001, at + 1.35);
+          const blend = context.createGain();
+          blend.gain.value = 0.22;
+          voice.connect(envelope);
+          overtone.connect(blend);
+          blend.connect(envelope);
           envelope.connect(master);
-          oscillator.start(startAt);
-          oscillator.stop(startAt + 1.08);
+          voice.start(at);
+          overtone.start(at);
+          voice.stop(at + 1.4);
+          overtone.stop(at + 1.4);
+        };
+
+        const playPad = (frequencies: number[], at: number) => {
+          if (!context) return;
+          const padGain = context.createGain();
+          padGain.gain.setValueAtTime(0.0001, at);
+          padGain.gain.linearRampToValueAtTime(0.035, at + 0.35);
+          padGain.gain.setValueAtTime(0.035, at + 2.1);
+          padGain.gain.exponentialRampToValueAtTime(0.0001, at + 2.8);
+          padGain.connect(master);
+          frequencies.forEach((frequency) => {
+            const oscillator = context!.createOscillator();
+            oscillator.type = "triangle";
+            oscillator.frequency.setValueAtTime(frequency, at);
+            oscillator.connect(padGain);
+            oscillator.start(at);
+            oscillator.stop(at + 2.85);
+          });
         };
 
         const playPhrase = () => {
           if (!context || context.state !== "running") return;
           const now = context.currentTime + 0.04;
-          playNote(melody[step % melody.length], now);
-          if (step % 4 === 0) playNote(melody[(step + 4) % melody.length] / 2, now);
+          playBell(melody[step % melody.length], now, 0.12);
+          if (step % 4 === 0) {
+            playPad(chords[(step / 4) % chords.length], now);
+            playBell(melody[(step + 2) % melody.length] * 2, now + 0.18, 0.035);
+          }
           step += 1;
         };
 
@@ -81,7 +116,7 @@ export default function Home() {
           if (context?.state !== "running") return;
           started = true;
           playPhrase();
-          timer = setInterval(playPhrase, 620);
+          timer = setInterval(playPhrase, 680);
         }).catch(() => {
           if (context && context.state !== "closed") void context.close();
           context = undefined;
