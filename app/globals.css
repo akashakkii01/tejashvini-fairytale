@@ -2467,3 +2467,44 @@ body:has(.kingdom-welcome){
  .welcome-scene .poster-sign-mask{width:49%;font-size:clamp(11px,2.8vw,16px)}
  .welcome-scene .poster-enter-mask{width:48%;font-size:clamp(9px,2.5vw,14px)}
 }
+
+
+/* Welcome poster cleanup: fully cover the original baked-in lettering and align the new labels to the artwork. */
+.welcome-scene .poster-title-mask{
+  top:6.5%;
+  width:82%;
+  height:18%;
+  padding:4px 8px;
+  background:linear-gradient(90deg,transparent 0%,#100d2b 8%,#100d2b 92%,transparent 100%);
+  font-size:clamp(18px,4.4vw,32px);
+  line-height:1.08;
+}
+.welcome-scene .poster-sign-mask{
+  top:66%;
+  width:53%;
+  height:16%;
+  padding:4px 10px;
+  border-radius:46% / 42%;
+  background:#49234f;
+  border:2px solid #e3b2d8;
+  box-shadow:0 0 0 5px #49234f,0 0 0 7px #d9a6d2,0 0 16px #f7c0e8;
+  font-size:clamp(13px,3.1vw,23px);
+  line-height:1.18;
+}
+.welcome-scene .poster-enter-mask{
+  top:84%;
+  width:54%;
+  height:8%;
+  padding:0 8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#a82b87,#dc3a9d,#a82b87);
+  border:3px solid #ffd4f1;
+  box-shadow:0 0 0 4px #f5a9e7,0 0 18px #ff9be8;
+  font-size:clamp(11px,2.9vw,19px);
+}
+.welcome-scene .poster-enter-mask b{margin-left:7px}
+@media(max-width:600px){
+  .welcome-scene .poster-title-mask{top:6.5%;width:82%;height:18%;font-size:clamp(17px,4.5vw,25px)}
+  .welcome-scene .poster-sign-mask{top:66%;width:53%;height:16%;font-size:clamp(12px,3vw,17px)}
+  .welcome-scene .poster-enter-mask{top:84%;width:54%;height:8%;font-size:clamp(10px,2.7vw,15px)}
+}
