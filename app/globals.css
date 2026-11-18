@@ -1462,3 +1462,8 @@ body:has(.kingdom-welcome){
  .finale-scene .letter-dear{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){.finale-scene .letter-open .envelope-paper{animation:none}}
+
+
+/* Clear onward navigation from the Adventure Express */
+.train-scene .train-continue-gifts{margin-top:8px}
+.destination-world .train-continue-gifts{margin-top:12px}
