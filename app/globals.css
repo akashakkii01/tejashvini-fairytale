@@ -2356,3 +2356,11 @@ body:has(.kingdom-welcome){
     height:40px;
   }
 }
+
+
+/* Consistent keyboard focus across every Princess Day scene */
+.kingdom button:focus-visible,
+.kingdom [role="button"]:focus-visible{
+  outline:2px solid #ffe0ae;
+  outline-offset:4px;
+}
