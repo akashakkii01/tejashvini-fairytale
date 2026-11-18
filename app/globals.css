@@ -1862,3 +1862,79 @@ body:has(.kingdom-welcome){
 @media(prefers-reduced-motion:reduce){
   .finale-scene .royal-envelope.letter-open,.finale-scene .letter-open .letter-paper,.finale-scene .letter-open .envelope-seal{animation:none}
 }
+
+
+/* Final letter — handwritten keepsake paper treatment */
+.finale-scene .envelope-paper{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:28px 27px 24px;
+  border:1px solid #ead1d9;
+  border-radius:4px 15px 5px 13px;
+  background:
+    radial-gradient(ellipse at 0% 0%,#f7e5bd88 0%,transparent 38%),
+    radial-gradient(ellipse at 100% 100%,#f2d9e788 0%,transparent 42%),
+    repeating-linear-gradient(0deg,#fffdf8 0px,#fffdf8 27px,#f4e9e8 28px,#fffdf8 29px);
+  box-shadow:inset 0 0 0 6px #fff9,inset 0 0 0 7px #e8cbd5,0 18px 38px #09051f38;
+}
+.finale-scene .envelope-paper:before,
+.finale-scene .envelope-paper:after{
+  position:absolute;
+  z-index:-1;
+  color:#c88ca7;
+  opacity:.62;
+  font-family:'Playfair Display',serif;
+  pointer-events:none;
+}
+.finale-scene .envelope-paper:before{
+  content:"❀";
+  top:12px;
+  right:15px;
+  font-size:22px;
+  transform:rotate(14deg);
+}
+.finale-scene .envelope-paper:after{
+  content:"✧";
+  bottom:10px;
+  left:15px;
+  color:#c99b62;
+  font-size:20px;
+}
+.finale-scene .letter-paper-kicker{
+  margin-bottom:15px;
+  color:#b17b91;
+  font-size:7px;
+  letter-spacing:2px;
+}
+.finale-scene .letter-dear{
+  margin-bottom:13px;
+  color:#a45f82;
+  font:600 25px 'Caveat',cursive;
+}
+.finale-scene .envelope-paper p{
+  margin:0 0 13px;
+  color:#705c68;
+  font:500 12px/1.85 'Playfair Display',serif;
+  letter-spacing:.05px;
+}
+.finale-scene .envelope-paper>b{
+  margin-top:15px;
+  color:#a95780;
+  font:600 21px 'Caveat',cursive;
+}
+.finale-scene .envelope-paper>small{
+  margin-top:8px;
+  color:#a17b8d;
+  font:500 16px 'Caveat',cursive;
+}
+@media(max-width:480px){
+  .finale-scene .envelope-paper{
+    padding:25px 19px 22px;
+    border-radius:4px 12px 5px 11px;
+  }
+  .finale-scene .letter-paper-kicker{font-size:6px;letter-spacing:1.5px}
+  .finale-scene .letter-dear{font-size:23px}
+  .finale-scene .envelope-paper p{font-size:10px;line-height:1.75;margin-bottom:11px}
+  .finale-scene .envelope-paper>b{font-size:19px}
+}
