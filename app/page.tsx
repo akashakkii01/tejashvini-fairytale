@@ -162,6 +162,11 @@ export default function Home() {
   const [activeGift, setActiveGift] = useState(-1);
   const [unwrappedGifts, setUnwrappedGifts] = useState<number[]>([]);
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  }, [scene]);
+
   return (
     <main className={`kingdom ${scene === 0 ? "kingdom-welcome" : ""}`}>
       <div className="night-sky" aria-hidden="true">
