@@ -1807,3 +1807,58 @@ body:has(.kingdom-welcome){
 @media(prefers-reduced-motion:reduce){
   .gifts-scene .final-surprise-prompt,.gifts-scene .final-surprise-prompt span,.gifts-scene .gifts-final-button{animation:none}
 }
+
+
+/* Final letter — more theatrical envelope opening */
+.finale-scene .royal-envelope{
+  position:relative;
+  transform-origin:50% 75%;
+  filter:drop-shadow(0 13px 22px #08051f35);
+}
+.finale-scene .royal-envelope:before{
+  content:"";
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:-10px;
+  width:76px;
+  height:76px;
+  border:1px solid #ffe4c477;
+  border-radius:50%;
+  transform:translateX(-50%) scale(.78);
+  opacity:0;
+  pointer-events:none;
+}
+.finale-scene .royal-envelope:not(.letter-open):hover:before{
+  opacity:.8;
+  transform:translateX(-50%) scale(1);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.finale-scene .royal-envelope.letter-open{
+  animation:envelope-open-moment .85s cubic-bezier(.2,.8,.2,1) both;
+  cursor:default;
+}
+.finale-scene .letter-open .envelope-paper{
+  transform-origin:50% 100%;
+  animation:letter-keepsake .9s cubic-bezier(.16,1,.3,1) both;
+  box-shadow:inset 0 0 0 5px #fff8,0 20px 42px #09051f48,0 0 28px #f5b5e944;
+}
+.finale-scene .letter-open .envelope-seal{
+  animation:seal-release .5s ease both;
+}
+.finale-scene .tap-envelope{
+  transition:opacity .25s ease,transform .25s ease;
+}
+@keyframes envelope-open-moment{
+  0%{transform:translateY(0) scale(1);filter:drop-shadow(0 13px 22px #08051f35)}
+  35%{transform:translateY(-9px) scale(1.025);filter:drop-shadow(0 20px 28px #08051f50)}
+  100%{transform:translateY(0) scale(1);filter:drop-shadow(0 13px 22px #08051f35)}
+}
+@keyframes seal-release{
+  0%{opacity:1;transform:scale(1) rotate(0)}
+  55%{opacity:1;transform:scale(1.25) rotate(12deg)}
+  100%{opacity:0;transform:scale(.55) rotate(-18deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .finale-scene .royal-envelope.letter-open,.finale-scene .letter-open .letter-paper,.finale-scene .letter-open .envelope-seal{animation:none}
+}
