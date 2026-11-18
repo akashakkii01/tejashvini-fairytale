@@ -1387,3 +1387,39 @@ body:has(.kingdom-welcome){
  .train-ticket{min-height:125px;padding:15px 13px}.train-ticket h3{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){.storybook-train,.train-smoke{animation:none}}
+
+/* Adventure Express destinations — each stop opens its own little world */
+.train-stop{min-height:126px}
+.train-stop i{font-style:normal;color:#ffe2bd;font-size:8px;letter-spacing:.2px;margin-top:3px}
+.train-stop small{line-height:1.4}
+.destination-world{width:100%;max-width:540px;margin:0 auto;padding:22px 18px 20px;border:1px solid #f7d9ef88;border-radius:25px;background:linear-gradient(155deg,#ffffff1c,#ffffff08 55%,#e778d51a);box-shadow:inset 0 1px #fff4,0 18px 40px #09051f40;animation:destination-arrive .45s ease both}
+.destination-world-0{background:radial-gradient(ellipse at 50% 0%,#f8b7d833,transparent 65%),linear-gradient(155deg,#fff1f51c,#ffffff08)}
+.destination-world-1{background:radial-gradient(ellipse at 50% 0%,#a8a8ff33,transparent 65%),linear-gradient(155deg,#e8e6ff1b,#ffffff08)}
+.destination-world-2{background:radial-gradient(ellipse at 50% 0%,#f5d49a33,transparent 65%),linear-gradient(155deg,#f7e2b91c,#ffffff08)}
+.destination-hero-icon{font-size:65px;line-height:1.2;margin:8px auto 4px;filter:drop-shadow(0 7px 15px #09051f55);animation:destination-float 3s ease-in-out infinite}
+.destination-world h2{font-size:clamp(29px,7vw,39px);margin:4px 0 8px}
+.destination-subtitle{max-width:390px;margin:0 auto;color:#ead5f0;font-size:11px;line-height:1.75}
+.destination-display{min-height:112px;margin:20px 0 12px;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid #ffffff25;border-radius:18px;background:#160d352b;overflow:hidden}
+.destination-display span{font-size:clamp(30px,8vw,44px);filter:drop-shadow(0 4px 8px #09051f55)}
+.flower-display{background:radial-gradient(ellipse at 50% 100%,#f4a4c433,transparent 70%),#160d352b}
+.flower-display span:nth-child(2),.flower-display span:nth-child(4){transform:translateY(-10px)}
+.star-display{background:radial-gradient(ellipse at 50% 50%,#b4a9ff33,transparent 75%),#160d352b}
+.star-display span{color:#ffe8b4;text-shadow:0 0 18px #ffe5a9}
+.star-display span:nth-child(odd){font-size:45px}
+.castle-display{background:linear-gradient(180deg,#4b2d7355,#170d3544)}
+.destination-prompt{margin:15px 0 10px;color:#fff0fb;font:500 18px 'Playfair Display',serif}
+.destination-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.destination-choices button{min-width:0;min-height:84px;padding:10px 4px;border:1px solid #f5d6ef55;border-radius:13px;background:#ffffff0b;color:#fbeaff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.destination-choices button span{font-size:24px}
+.destination-choices button b{font-size:9px;font-weight:500}
+.destination-choices button.choice-active{border-color:#ffe2b8;background:#f9d9f222;box-shadow:0 0 18px #f3b8e833}
+.destination-reveal,.castle-surprise{margin:13px 0 0;padding:15px 12px;border:1px dashed #f7d8ed77;border-radius:14px;background:#ffffff0b}
+.destination-reveal b,.castle-surprise b{color:#ffe5bd;font:500 17px 'Playfair Display',serif}
+.destination-reveal p,.castle-surprise p{margin:7px auto 0;max-width:360px;color:#ead5f0;font-size:11px;line-height:1.7}
+.castle-surprise>span{display:block;font-size:42px;margin-bottom:7px}
+.castle-blessing{margin-top:13px;border:1px solid #f7d9a9aa;border-radius:24px;padding:11px 16px;background:#f7d9a91a;color:#ffe8c5;font-size:10px;cursor:pointer}
+.destination-return{margin:18px auto 0;padding:10px 14px;border:1px solid #f3d5ec55;border-radius:25px;background:#ffffff0c;color:#f4d9ef;font-size:10px;cursor:pointer}
+@keyframes destination-arrive{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes destination-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:480px){.train-stop{min-height:118px}.destination-world{padding:19px 12px 17px;border-radius:21px}.destination-display{min-height:96px;gap:5px}.destination-choices{gap:6px}.destination-choices button{min-height:78px}.destination-choices button b{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.destination-world,.destination-hero-icon{animation:none}}
