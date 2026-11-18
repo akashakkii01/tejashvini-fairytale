@@ -59,7 +59,7 @@ export default function Home() {
         {Array.from({ length: 34 }, (_, i) => <i key={i} className="sky-star" style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 4) % 78}%`, animationDelay: `${(i % 7) * .4}s` }}>✦</i>)}
       </div>
       <header className="royal-nav">
-        <span className="royal-mark">👸 <b>YOUR PRINCESS WORLD</b></span>
+        <span className="royal-mark">👸 <b>PRINCESS WORLD</b></span>
         <span className="music-chip">♡ made with care</span>
       </header>
 
