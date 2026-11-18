@@ -172,8 +172,8 @@ export default function Home() {
         <span className="music-chip">♡ made with care</span>
       </header>
 
-      <div className="royal-progress"><span style={{ width: `${(scene + 1) * (100 / 6)}%` }} /></div>
-      <div className="scene-count">A LITTLE FAIRYTALE · {scene + 1} / 6</div>
+      <div className="royal-progress" role="progressbar" aria-label="Fairytale progress" aria-valuemin={1} aria-valuemax={6} aria-valuenow={scene + 1} aria-valuetext={`Scene ${scene + 1} of 6`}><span style={{ width: `${(scene + 1) * (100 / 6)}%` }} /></div>
+      <div className="scene-count" aria-live="polite" aria-atomic="true">A LITTLE FAIRYTALE · {scene + 1} / 6</div>
 
       {scene === 0 && <section className="royal-scene welcome-scene">
         <button
@@ -268,7 +268,7 @@ export default function Home() {
         <p className="gift-instruction">Tap each little present to unwrap its wish ♡</p>
         <div className="gift-progress" aria-live="polite">
           <div className="gift-progress-copy"><span>YOUR LITTLE SURPRISES</span><b>{unwrappedGifts.length} / 4 unwrapped</b></div>
-          <div className="gift-progress-track"><span style={{width: `${(unwrappedGifts.length / gifts.length) * 100}%`}} /></div>
+          <div className="gift-progress-track" role="progressbar" aria-label="Gifts unwrapped" aria-valuemin={0} aria-valuemax={gifts.length} aria-valuenow={unwrappedGifts.length} aria-valuetext={`${unwrappedGifts.length} of ${gifts.length} gifts unwrapped`}><span style={{width: `${(unwrappedGifts.length / gifts.length) * 100}%`}} /></div>
         </div>
         <div className="gift-list">{gifts.map(([icon, title, copy], index) => <button type="button" className={`gift-row ${activeGift === index ? "gift-row-open" : ""} ${unwrappedGifts.includes(index) ? "gift-row-seen" : ""}`} key={title} onClick={() => {setActiveGift(activeGift === index ? -1 : index);setUnwrappedGifts(current => current.includes(index) ? current : [...current,index]);}} aria-expanded={activeGift === index}>
           <span className="gift-row-icon">{icon}</span><div className="gift-row-copy"><h3>{title}</h3><p>{copy}</p>{activeGift === index && <div className="gift-unwrapped"><span className="gift-reveal-kicker">✦ YOUR GIFT IS UNWRAPPED ✦</span><b>{["A bouquet of happiness","A little sweetness for your day","A crown for your kind heart","A hug whenever you need one"][index]}</b><small>{["May your days keep blooming with laughter, friendship and beautiful surprises.","I hope life brings you countless sweet moments and lovely memories.","Keep shining in your own way. Your grace is your very own crown.","Even on a difficult day, remember that someone is wishing you well."][index]}</small></div>}</div><b className="gift-row-mark">{activeGift === index ? "−" : "+"}</b>
