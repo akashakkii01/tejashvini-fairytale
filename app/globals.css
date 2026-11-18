@@ -1445,7 +1445,7 @@ body:has(.kingdom-welcome){
 /* Final letter — a keepsake note with a softer reveal */
 .finale-scene .letter-intro{margin:-2px auto 4px;color:#e7cbed;font-size:11px;line-height:1.7}
 .finale-scene .royal-envelope{cursor:pointer;outline:none;transition:transform .25s ease,filter .25s ease}
-.finale-scene .royal-envelope:focus-visible{filter:drop-shadow(0 0 9px #ffd6f0)}
+.finale-scene .royal-envelope:focus-visible{outline:2px solid #ffe0ae;outline-offset:5px;filter:drop-shadow(0 0 9px #ffd6f0)}
 .finale-scene .royal-envelope:hover{transform:translateY(-3px)}
 .finale-scene .envelope-paper{padding:22px 21px 18px;background:linear-gradient(160deg,#fffdf7,#fff1f6);color:#77566e;border:1px solid #f2dce8;box-shadow:inset 0 0 0 5px #fff8,0 14px 30px #09051f30}
 .finale-scene .letter-paper-kicker{display:block;margin:0 0 11px;color:#b27a9d;font-size:7px;font-weight:700;letter-spacing:1.7px}
