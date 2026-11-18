@@ -59,7 +59,7 @@ export default function Home() {
         {Array.from({ length: 34 }, (_, i) => <i key={i} className="sky-star" style={{ left: `${(i * 37 + 9) % 100}%`, top: `${(i * 23 + 4) % 78}%`, animationDelay: `${(i % 7) * .4}s` }}>✦</i>)}
       </div>
       <header className="royal-nav">
-        <span className="royal-mark">👸 <b>YOUR LITTLE KINGDOM</b></span>
+        <span className="royal-mark">👸 <b>YOUR PRINCESS WORLD</b></span>
         <span className="music-chip">♡ made with care</span>
       </header>
 
@@ -70,12 +70,12 @@ export default function Home() {
         <button
           className="castle-poster-button"
           onClick={() => setScene(1)}
-          aria-label="Enter Princess Tejashvini's Kingdom"
+          aria-label="Enter Princess Tejashvini's World"
         >
           <img
             className="castle-artwork-full"
             src="/priness-castle-hero.png"
-            alt="Welcome to your Little Kingdom: Princess Tejashvini's Kingdom, with an Enter the Kingdom invitation"
+            alt="A fairytale welcome to Princess Tejashvini's magical world"
           />
         </button>
       </section>}
@@ -91,7 +91,7 @@ export default function Home() {
           />
         </div>
         <h3 className="royal-quote">Royalty isn't about a crown.<br /><em>It's the happiness you bring.</em></h3>
-        <p className="royal-copy">Today, the kingdom is celebrating you.<br />Ready to see what's waiting inside?</p>
+        <p className="royal-copy">Today, your fairytale is all about you.<br />Ready to see what's waiting inside?</p>
         <button className="royal-button" onClick={() => setScene(2)}>Explore your royal surprises <span>→</span></button>
         <button className="royal-back" onClick={() => setScene(0)}>← Back to the castle</button>
       </section>}
@@ -147,7 +147,7 @@ export default function Home() {
           <p className="destination-subtitle">{["Welcome to a tiny boutique filled with flowers chosen just for you.","Welcome to a little corner of the night sky. Pick a star and make a wish.","The castle gates are open. Your royal surprise is waiting inside."][openDestination]}</p>
           {openDestination===0 && <><div className="destination-display flower-display"><span>🌷</span><span>🌸</span><span>💐</span><span>🌹</span><span>🌻</span></div><h3 className="destination-prompt">Choose your favourite bouquet</h3><div className="destination-choices">{["Tulip Bouquet","Blush Garden","Royal Roses"].map((name,i)=><button key={name} className={destinationChoice===i?"choice-active":""} onClick={()=>setDestinationChoice(i)}><span>{["🌷","🌸","🌹"][i]}</span><b>{name}</b></button>)}</div><div className="destination-reveal"><b>{["A little bunch of joy","A garden wrapped with care","A bouquet fit for royalty"][destinationChoice]}</b><p>{["May every day bring you a fresh reason to smile.","A reminder that lovely things grow in their own time.","Because you deserve all the beautiful things life can offer."][destinationChoice]}</p></div></>}
           {openDestination===1 && <><div className="destination-display star-display"><span>✦</span><span>✧</span><span>★</span><span>✧</span><span>✦</span></div><h3 className="destination-prompt">Pick a star for your wish</h3><div className="destination-choices">{["Dreams","Happiness","Magic"].map((name,i)=><button key={name} className={destinationChoice===i?"choice-active":""} onClick={()=>setDestinationChoice(i)}><span>{["🌠","💫","✨"][i]}</span><b>{name}</b></button>)}</div><div className="destination-reveal"><b>{["A wish for your dreams","A wish for happiness","A wish for everyday magic"][destinationChoice]}</b><p>{["May you always find the courage to chase what makes your heart happy.","May laughter, peace and lovely people find you wherever you go.","May ordinary days surprise you with extraordinary little moments."][destinationChoice]}</p></div></>}
-          {openDestination===2 && <><div className="destination-display castle-display"><span>🕯️</span><span>👸</span><span>🕯️</span></div><h3 className="destination-prompt">The royal hall has a surprise</h3><div className="castle-surprise"><span>👸</span><b>A crown made of kindness</b><p>For a princess whose warmth, dreams and little acts of kindness make her kingdom brighter.</p></div><button className="castle-blessing" onClick={()=>setDestinationChoice(destinationChoice===0?1:0)}>{destinationChoice===0?"Receive your royal blessing ✨":"Your blessing is yours to keep ♡"}</button></>}
+          {openDestination===2 && <><div className="destination-display castle-display"><span>🕯️</span><span>👸</span><span>🕯️</span></div><h3 className="destination-prompt">The royal hall has a surprise</h3><div className="castle-surprise"><span>👸</span><b>A crown made of kindness</b><p>For a princess whose warmth, dreams and little acts of kindness make her world brighter.</p></div><button className="castle-blessing" onClick={()=>setDestinationChoice(destinationChoice===0?1:0)}>{destinationChoice===0?"Receive your royal blessing ✨":"Your blessing is yours to keep ♡"}</button></>}
           <button className="destination-return" onClick={()=>setOpenDestination(-1)}>← Return to the Adventure Express</button>
           <button className="royal-button train-continue-gifts" onClick={()=>{setOpenDestination(-1);setScene(4);}}>Continue to Gifts <span>→</span></button>
         </div>}
@@ -193,11 +193,11 @@ export default function Home() {
           {giftOpened && <div className="wish-reveal" id="final-wish-reveal" aria-live="polite"><span className="wish-reveal-kicker">✦ A LITTLE WISH, JUST FOR YOU ✦</span><div className="wish-reveal-sparkles" aria-hidden="true">✧　♡　✧</div><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Discover another wish <span>↻</span></button></div>}
         </div>
         <p className="final-signoff">Keep shining, Princess. <span>♡</span></p>
-        <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); setWishIndex(0); setActiveCompliment(0); setTrainStop(0); setOpenDestination(-1); setDestinationChoice(0); setActiveGift(-1); setUnwrappedGifts([]); }}>↺ Visit your kingdom again</button>
+        <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); setWishIndex(0); setActiveCompliment(0); setTrainStop(0); setOpenDestination(-1); setDestinationChoice(0); setActiveGift(-1); setUnwrappedGifts([]); }}>↺ Visit your princess world again</button>
       </section>}
 
       <footer className="royal-footer">
-        <div className="royal-footer-main"><span>✧</span> A little kingdom made with care <span>♡</span></div>
+        <div className="royal-footer-main"><span>✧</span> A little world made with care <span>♡</span></div>
         <div className="footer-wish"><span className="footer-crown">👸</span><span className="footer-wish-line">May your little world always sparkle</span><span className="footer-stars">✦　✧　✦</span></div>
       </footer>
     </main>
