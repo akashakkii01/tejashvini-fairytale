@@ -2406,3 +2406,31 @@ body:has(.kingdom-welcome){
   opacity:0!important;
   pointer-events:none!important;
 }
+
+
+/* Let the opened Princess Day letter expand to show every line on phones */
+.finale-scene .royal-envelope.letter-open{
+  height:auto;
+  min-height:0;
+  padding:0;
+  overflow:visible;
+}
+.finale-scene .letter-open .envelope-paper{
+  position:relative;
+  left:0;
+  top:0;
+  width:100%;
+  height:auto;
+  min-height:0;
+  overflow:visible;
+  padding:25px 27px 24px;
+}
+.finale-scene .letter-open .envelope-pocket,
+.finale-scene .letter-open .envelope-seal{
+  display:none;
+}
+@media(max-width:480px){
+  .finale-scene .letter-open .envelope-paper{
+    padding:23px 17px 22px;
+  }
+}
