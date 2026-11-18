@@ -46,117 +46,73 @@ export default function Home() {
     let started = false;
     let starting = false;
     const melody = [659.25, 783.99, 987.77, 783.99, 698.46, 880, 987.77, 1174.66, 987.77, 880, 783.99, 698.46, 659.25, 698.46, 783.99, 659.25];
-    const chords = [
-      [261.63, 329.63, 392],
-      [220, 261.63, 329.63],
-      [174.61, 220, 261.63],
-      [196, 246.94, 293.66]
-    ];
+    const chords = [[261.63, 329.63, 392], [220, 261.63, 329.63], [174.61, 220, 261.63], [196, 246.94, 293.66]];
 
     const startMusic = () => {
       if (started || starting) return;
       starting = true;
       try {
         const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        if (!AudioContextClass) { starting = false; return; }
+        if (!AudioContextClass) {
+          starting = false;
+          return;
+        }
         context = new AudioContextClass();
-        const master = context.createGain();
-        master.gain.value = 0.48;
-        master.connect(context.destination);
+        const audio = context;
+        const master = audio.createGain();
+        master.gain.value = 0.7;
+        master.connect(audio.destination);
 
-        const playBell = (frequency: number, at: number, volume = 0.16) => {
-          if (!context) return;
-          const voice = context.createOscillator();
-          const overtone = context.createOscillator();
-          const envelope = context.createGain();
-          voice.type = "sine";
-          overtone.type = "sine";
-          voice.frequency.setValueAtTime(frequency, at);
-          overtone.frequency.setValueAtTime(frequency * 2.01, at);
+        const playNote = (frequency: number, at: number, volume = 0.18) => {
+          const oscillator = audio.createOscillator();
+          const envelope = audio.createGain();
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency, at);
           envelope.gain.setValueAtTime(0.0001, at);
-          envelope.gain.exponentialRampToValueAtTime(volume, at + 0.025);
-          envelope.gain.exponentialRampToValueAtTime(0.0001, at + 1.35);
-          const blend = context.createGain();
-          blend.gain.value = 0.22;
-          voice.connect(envelope);
-          overtone.connect(blend);
-          blend.connect(envelope);
+          envelope.gain.linearRampToValueAtTime(volume, at + 0.04);
+          envelope.gain.exponentialRampToValueAtTime(0.0001, at + 1.1);
+          oscillator.connect(envelope);
           envelope.connect(master);
-          voice.start(at);
-          overtone.start(at);
-          voice.stop(at + 1.4);
-          overtone.stop(at + 1.4);
-        };
-
-        const playPad = (frequencies: number[], at: number) => {
-          if (!context) return;
-          const padGain = context.createGain();
-          padGain.gain.setValueAtTime(0.0001, at);
-          padGain.gain.linearRampToValueAtTime(0.06, at + 0.35);
-          padGain.gain.setValueAtTime(0.06, at + 2.1);
-          padGain.gain.exponentialRampToValueAtTime(0.0001, at + 2.8);
-          padGain.connect(master);
-          frequencies.forEach((frequency) => {
-            const oscillator = context!.createOscillator();
-            oscillator.type = "triangle";
-            oscillator.frequency.setValueAtTime(frequency, at);
-            oscillator.connect(padGain);
-            oscillator.start(at);
-            oscillator.stop(at + 2.85);
-          });
+          oscillator.start(at);
+          oscillator.stop(at + 1.15);
         };
 
         const playPhrase = () => {
-          if (!context || context.state !== "running") return;
-          const now = context.currentTime + 0.04;
-          playBell(melody[step % melody.length], now, 0.22);
+          if (audio.state !== "running") return;
+          const now = audio.currentTime + 0.03;
+          playNote(melody[step % melody.length], now, 0.24);
           if (step % 4 === 0) {
-            playPad(chords[(step / 4) % chords.length], now);
-            playBell(melody[(step + 2) % melody.length] * 2, now + 0.18, 0.065);
+            chords[(step / 4) % chords.length].forEach((frequency) => playNote(frequency, now, 0.035));
           }
           step += 1;
         };
 
-        void context.resume().then(() => {
+        void audio.resume().then(() => {
           starting = false;
-          if (context?.state !== "running") {
-            if (context && context.state !== "closed") void context.close();
-            context = undefined;
+          if (audio.state !== "running") {
+            setMusicEnabled(false);
             return;
           }
           started = true;
           setMusicEnabled(true);
-          document.removeEventListener("pointerdown", onFirstInteraction);
-          document.removeEventListener("click", onFirstInteraction);
-          document.removeEventListener("touchend", onFirstInteraction);
-          document.removeEventListener("keydown", onFirstInteraction);
           playPhrase();
-          timer = setInterval(playPhrase, 680);
+          timer = setInterval(playPhrase, 720);
         }).catch(() => {
           starting = false;
-          if (context && context.state !== "closed") void context.close();
+          setMusicEnabled(false);
+          if (audio.state !== "closed") void audio.close();
           context = undefined;
         });
       } catch {
         starting = false;
+        setMusicEnabled(false);
         if (context && context.state !== "closed") void context.close();
         context = undefined;
-        // Audio is optional; the website remains fully usable if unavailable.
       }
     };
 
     musicStarter.current = startMusic;
-    const onFirstInteraction = () => startMusic();
-    document.addEventListener("pointerdown", onFirstInteraction);
-    document.addEventListener("click", onFirstInteraction);
-    document.addEventListener("touchend", onFirstInteraction, { passive: true });
-    document.addEventListener("keydown", onFirstInteraction);
-
     return () => {
-      document.removeEventListener("pointerdown", onFirstInteraction);
-      document.removeEventListener("click", onFirstInteraction);
-      document.removeEventListener("touchend", onFirstInteraction);
-      document.removeEventListener("keydown", onFirstInteraction);
       if (timer) clearInterval(timer);
       if (context && context.state !== "closed") void context.close();
       musicStarter.current = null;
