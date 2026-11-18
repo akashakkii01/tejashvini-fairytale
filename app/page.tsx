@@ -158,7 +158,8 @@ export default function Home() {
           <span className="gift-row-icon">{icon}</span><div className="gift-row-copy"><h3>{title}</h3><p>{copy}</p>{activeGift === index && <div className="gift-unwrapped"><span className="gift-reveal-kicker">✦ YOUR GIFT IS UNWRAPPED ✦</span><b>{["A bouquet of happiness","A little sweetness for your day","A crown for your kind heart","A hug whenever you need one"][index]}</b><small>{["May your days keep blooming with laughter, friendship and beautiful surprises.","I hope life brings you countless sweet moments and lovely memories.","Keep shining in your own way. Your grace is your very own crown.","Even on a difficult day, remember that someone is wishing you well."][index]}</small></div>}</div><b className="gift-row-mark">{activeGift === index ? "−" : "+"}</b>
         </button>)}</div>
         <div className="royal-note"><span>✧ A little note for you ✧</span><p>These gifts may be imaginary, but the wish behind them is real: I hope your day is as lovely as you are.</p></div>
-        <button className="royal-button" onClick={() => setScene(5)}>One last thing, Princess <span>→</span></button>
+        <div className="final-surprise-prompt"><span>✦</span> Your final surprise is waiting... <span>✦</span></div>
+        <button className="royal-button gifts-final-button" onClick={() => setScene(5)}>One last thing, Princess <span>→</span></button>
         <button className="royal-back" onClick={() => setScene(3)}>← Back</button>
       </section>}
 
