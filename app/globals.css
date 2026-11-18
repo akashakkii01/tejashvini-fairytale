@@ -1440,3 +1440,25 @@ body:has(.kingdom-welcome){
 .gifts-scene .gift-unwrapped b{display:block;color:#ffe4bb;font:500 14px 'Playfair Display',serif}
 .gifts-scene .gift-unwrapped small{display:block;margin-top:5px;color:#f0dff3;font-size:10px;line-height:1.6}
 @media(max-width:480px){.gifts-scene .gift-row{grid-template-columns:40px minmax(0,1fr) 20px;gap:10px;padding:13px 11px}.gifts-scene .gift-row-icon{width:40px;height:40px;font-size:24px}.gifts-scene .gift-row-copy h3{font-size:15px}.gifts-scene .gift-row-copy p{font-size:10px}}
+
+
+/* Final letter — a keepsake note with a softer reveal */
+.finale-scene .letter-intro{margin:-2px auto 4px;color:#e7cbed;font-size:11px;line-height:1.7}
+.finale-scene .royal-envelope{cursor:pointer;outline:none;transition:transform .25s ease,filter .25s ease}
+.finale-scene .royal-envelope:focus-visible{filter:drop-shadow(0 0 9px #ffd6f0)}
+.finale-scene .royal-envelope:hover{transform:translateY(-3px)}
+.finale-scene .envelope-paper{padding:22px 21px 18px;background:linear-gradient(160deg,#fffdf7,#fff1f6);color:#77566e;border:1px solid #f2dce8;box-shadow:inset 0 0 0 5px #fff8,0 14px 30px #09051f30}
+.finale-scene .letter-paper-kicker{display:block;margin:0 0 11px;color:#b27a9d;font-size:7px;font-weight:700;letter-spacing:1.7px}
+.finale-scene .letter-dear{display:block;margin:0 0 10px;color:#a65f87;font:600 21px 'Caveat',cursive}
+.finale-scene .envelope-paper p{margin:0 0 10px;color:#775f70;font-family:'Playfair Display',serif;font-size:11px;line-height:1.65;text-align:left}
+.finale-scene .envelope-paper>b{display:block;margin-top:11px;color:#b35f8d;font:600 17px 'Caveat',cursive;text-align:left}
+.finale-scene .envelope-paper>small{display:block;margin-top:5px;color:#a9879a;font:500 13px 'Caveat',cursive;text-align:right}
+.finale-scene .letter-open .envelope-paper{animation:letter-keepsake .75s cubic-bezier(.2,.8,.2,1) both}
+.finale-scene .letter-open-caption{max-width:340px;margin:7px auto 10px;color:#ffe1f5;font:italic 13px 'Playfair Display',serif;animation:destination-arrive .45s both}
+@keyframes letter-keepsake{0%{opacity:.55;transform:translateY(24px) scale(.96)}65%{opacity:1;transform:translateY(-4px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:480px){
+ .finale-scene .envelope-paper{padding:19px 16px 16px}
+ .finale-scene .envelope-paper p{font-size:10px;line-height:1.55}
+ .finale-scene .letter-dear{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){.finale-scene .letter-open .envelope-paper{animation:none}}
