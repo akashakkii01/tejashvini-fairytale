@@ -270,7 +270,7 @@ export default function Home() {
         <p className="royal-eyebrow">✦ sealed with a little love ✦</p>
         <h2>A Little Letter<br /><em>Just for You</em> 💌</h2>
         <p className="letter-intro">One last little surprise before your fairytale ends.</p>
-        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpened(true); }} aria-label="Open the Princess Day letter" aria-expanded={opened}>
+        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpened(true); } }} aria-label="Open the Princess Day letter" aria-expanded={opened}>
           <div className="envelope-paper">
             <span className="letter-paper-kicker">A LITTLE NOTE, WITH WARM WISHES</span>
             <span className="letter-dear">Dear Tejashvini,</span>
