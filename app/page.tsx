@@ -72,11 +72,16 @@ export default function Home() {
           onClick={() => setScene(1)}
           aria-label="Enter Princess Tejashvini's World"
         >
-          <img
-            className="castle-artwork-full"
-            src="/priness-castle-hero.png"
-            alt="A fairytale welcome to Princess Tejashvini's magical world"
-          />
+          <div className="castle-artwork-wrap">
+            <img
+              className="castle-artwork-full"
+              src="/priness-castle-hero.png"
+              alt="A fairytale castle welcome to Princess Tejashvini's magical world"
+            />
+            <span className="poster-title-mask">Welcome to Your<br /><em>Magical World</em></span>
+            <span className="poster-sign-mask">Princess Tejashvini’s<br />Magical World</span>
+            <span className="poster-enter-mask">Enter Your Magical World <b>→</b></span>
+          </div>
         </button>
       </section>}
 
