@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tejaswinni-fairytale.rajs85137.workers.dev"),
+  metadataBase: new URL("https://tejashvini-fairytale.rajs85137.workers.dev"),
   title: "A Little Fairytale for Tejaswinni",
   description: "A little world made just to make your day feel magical.",
   applicationName: "A Little Fairytale",
