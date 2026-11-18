@@ -74,7 +74,7 @@ export default function Home() {
         >
           <img
             className="castle-artwork-full"
-            src="/princess-world-poster-correct.png"
+            src="/princess-world-poster-clean.png"
             alt="Princess Tejashvini's Magical World, a glowing fairytale castle welcome poster"
           />
         </button>
