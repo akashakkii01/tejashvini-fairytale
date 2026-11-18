@@ -46,7 +46,8 @@ const wishes = [
 ];
 
 export default function Home() {
-  const [scene, setScene] = useState(0);\n  const [magicIndex, setMagicIndex] = useState(-1);
+  const [scene, setScene] = useState(0);
+  const [magicIndex, setMagicIndex] = useState(-1);
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
