@@ -27,6 +27,17 @@ const complimentReveals = [
   "There is no one else quite like you — and that is your superpower."
 ];
 
+const magicMoments = [
+  "A tiny reminder: you make ordinary moments a little brighter. ✨",
+  "Royal announcement: today is a perfect day to smile. 👑",
+  "A little fairy dust for every dream you're chasing. 🪄",
+  "Somewhere, a star just twinkled a little brighter for you. ⭐",
+  "Your kindness is its own kind of magic. 🌷",
+  "Sending you one pocket-sized dose of happiness. 💗",
+  "Plot twist: the princess gets to choose her own adventure. 🏰",
+  "May a lovely little surprise find you today. 🎀"
+];
+
 const wishes = [
   "May your days be filled with laughter, kind people and tiny unexpected joys.",
   "May you never run out of reasons to smile or dreams to look forward to.",
@@ -35,7 +46,7 @@ const wishes = [
 ];
 
 export default function Home() {
-  const [scene, setScene] = useState(0);
+  const [scene, setScene] = useState(0);\n  const [magicIndex, setMagicIndex] = useState(-1);
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
   const [wishIndex, setWishIndex] = useState(0);
@@ -193,6 +204,21 @@ export default function Home() {
         <div className="royal-footer-main"><span>✧</span> A little kingdom made with care <span>♡</span></div>
         <div className="footer-wish"><span className="footer-crown">👸</span><span className="footer-wish-line">May your little world always sparkle</span><span className="footer-stars">✦　✧　✦</span></div>
       </footer>
+      <div className="magic-corner" aria-live="polite">
+        {magicIndex >= 0 && <div className="magic-toast" key={magicIndex}>
+          <span className="magic-toast-sparkles" aria-hidden="true">✦　✧　✦</span>
+          <p>{magicMoments[magicIndex]}</p>
+        </div>}
+        <button
+          type="button"
+          className="magic-wand-button"
+          onClick={() => setMagicIndex(current => (current + 1) % magicMoments.length)}
+          aria-label="Reveal a little magical surprise"
+        >
+          <span className="magic-wand-icon">🪄</span>
+          <span className="magic-wand-label">A little magic</span>
+        </button>
+      </div>
     </main>
   );
 }
