@@ -2434,3 +2434,36 @@ body:has(.kingdom-welcome){
     padding:23px 17px 22px;
   }
 }
+
+
+/* Replace the baked-in kingdom lettering on the welcome poster with live page text. */
+.welcome-scene .castle-artwork-wrap{position:relative;width:100%;line-height:normal}
+.welcome-scene .poster-title-mask,
+.welcome-scene .poster-sign-mask,
+.welcome-scene .poster-enter-mask{
+  position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;text-align:center;
+  pointer-events:none;z-index:2;color:#fff4ff;text-shadow:0 2px 9px #f18bdc99,0 2px 16px #140522;
+}
+.welcome-scene .poster-title-mask{
+  top:8.5%;width:76%;height:12%;flex-direction:column;gap:0;
+  background:linear-gradient(90deg,transparent,#15102d 13%,#15102d 87%,transparent);
+  font-family:Georgia,serif;font-size:clamp(17px,4.2vw,31px);font-style:italic;line-height:1.05;
+}
+.welcome-scene .poster-title-mask em{font-size:1.12em;color:#ffc4ed}
+.welcome-scene .poster-sign-mask{
+  top:73%;width:48%;height:10%;border-radius:42%;
+  background:#48224f;border:2px solid #d9a6d2;box-shadow:0 0 0 4px #48224f,0 0 10px #f7c0e8;
+  font-family:Georgia,serif;font-size:clamp(12px,3vw,22px);font-style:italic;line-height:1.15;
+}
+.welcome-scene .poster-enter-mask{
+  top:89.5%;width:48%;height:5%;border-radius:999px;
+  background:linear-gradient(90deg,#a82b87,#dc3a9d,#a82b87);border:2px solid #ffd4f1;
+  box-shadow:0 0 0 3px #f5a9e7,0 0 12px #ff9be8;
+  font-family:Georgia,serif;font-size:clamp(10px,2.7vw,18px);white-space:nowrap;
+}
+.welcome-scene .poster-enter-mask b{margin-left:8px}
+@media(max-width:600px){
+ .welcome-scene .poster-title-mask{font-size:clamp(16px,4.1vw,23px)}
+ .welcome-scene .poster-sign-mask{width:49%;font-size:clamp(11px,2.8vw,16px)}
+ .welcome-scene .poster-enter-mask{width:48%;font-size:clamp(9px,2.5vw,14px)}
+}
