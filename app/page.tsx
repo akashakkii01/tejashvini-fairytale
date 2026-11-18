@@ -302,7 +302,7 @@ export default function Home() {
           {giftOpened && <div className="wish-reveal"><span className="wish-reveal-kicker">✦ A LITTLE WISH, JUST FOR YOU ✦</span><div className="wish-reveal-sparkles" aria-hidden="true">✧　♡　✧</div><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Discover another wish <span>↻</span></button></div>}
         </div>
         <p className="final-signoff">Keep shining, Princess. <span>♡</span></p>
-        <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); }}>↺ Visit your kingdom again</button>
+        <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); setWishIndex(0); setActiveCompliment(0); setTrainStop(0); setOpenDestination(-1); setDestinationChoice(0); setActiveGift(-1); setUnwrappedGifts([]); }}>↺ Visit your kingdom again</button>
       </section>}
 
       <footer className="royal-footer">
