@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const compliments = [
   ["♫", "Your Voice", "There is something so lovely about the way you speak — your words have a warmth all their own."],
@@ -36,89 +36,6 @@ const wishes = [
 ];
 
 export default function Home() {
-  const musicStarter = useRef<(() => void) | null>(null);
-  const [musicEnabled, setMusicEnabled] = useState(false);
-
-  useEffect(() => {
-    let context: AudioContext | undefined;
-    let timer: ReturnType<typeof setInterval> | undefined;
-    let step = 0;
-    let started = false;
-    let starting = false;
-    const melody = [659.25, 783.99, 987.77, 783.99, 698.46, 880, 987.77, 1174.66, 987.77, 880, 783.99, 698.46, 659.25, 698.46, 783.99, 659.25];
-    const chords = [[261.63, 329.63, 392], [220, 261.63, 329.63], [174.61, 220, 261.63], [196, 246.94, 293.66]];
-
-    const startMusic = () => {
-      if (started || starting) return;
-      starting = true;
-      try {
-        const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        if (!AudioContextClass) {
-          starting = false;
-          return;
-        }
-        context = new AudioContextClass();
-        const audio = context;
-        const master = audio.createGain();
-        master.gain.value = 0.7;
-        master.connect(audio.destination);
-
-        const playNote = (frequency: number, at: number, volume = 0.18) => {
-          const oscillator = audio.createOscillator();
-          const envelope = audio.createGain();
-          oscillator.type = "sine";
-          oscillator.frequency.setValueAtTime(frequency, at);
-          envelope.gain.setValueAtTime(0.0001, at);
-          envelope.gain.linearRampToValueAtTime(volume, at + 0.04);
-          envelope.gain.exponentialRampToValueAtTime(0.0001, at + 1.1);
-          oscillator.connect(envelope);
-          envelope.connect(master);
-          oscillator.start(at);
-          oscillator.stop(at + 1.15);
-        };
-
-        const playPhrase = () => {
-          if (audio.state !== "running") return;
-          const now = audio.currentTime + 0.03;
-          playNote(melody[step % melody.length], now, 0.24);
-          if (step % 4 === 0) {
-            chords[(step / 4) % chords.length].forEach((frequency) => playNote(frequency, now, 0.035));
-          }
-          step += 1;
-        };
-
-        void audio.resume().then(() => {
-          starting = false;
-          if (audio.state !== "running") {
-            setMusicEnabled(false);
-            return;
-          }
-          started = true;
-          setMusicEnabled(true);
-          playPhrase();
-          timer = setInterval(playPhrase, 720);
-        }).catch(() => {
-          starting = false;
-          setMusicEnabled(false);
-          if (audio.state !== "closed") void audio.close();
-          context = undefined;
-        });
-      } catch {
-        starting = false;
-        setMusicEnabled(false);
-        if (context && context.state !== "closed") void context.close();
-        context = undefined;
-      }
-    };
-
-    musicStarter.current = startMusic;
-    return () => {
-      if (timer) clearInterval(timer);
-      if (context && context.state !== "closed") void context.close();
-      musicStarter.current = null;
-    };
-  }, []);
-
   const [scene, setScene] = useState(0);
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
@@ -143,7 +60,7 @@ export default function Home() {
       </div>
       <header className="royal-nav">
         <span className="royal-mark">👸 <b>YOUR LITTLE KINGDOM</b></span>
-        <div className="royal-audio-controls"><button type="button" className="music-enable" onClick={() => musicStarter.current?.()} aria-live="polite">{musicEnabled ? "♫ Music on" : "♫ Enable Music"}</button><span className="music-chip">♡ made with care</span></div>
+        <span className="music-chip">♡ made with care</span>
       </header>
 
       <div className="royal-progress" role="progressbar" aria-label="Fairytale progress" aria-valuemin={1} aria-valuemax={6} aria-valuenow={scene + 1} aria-valuetext={`Scene ${scene + 1} of 6`}><span style={{ width: `${(scene + 1) * (100 / 6)}%` }} /></div>
