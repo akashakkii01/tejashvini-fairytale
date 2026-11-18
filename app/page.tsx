@@ -288,8 +288,8 @@ export default function Home() {
         <p className="royal-eyebrow">✦ sealed with a little love ✦</p>
         <h2>A Little Letter<br /><em>Just for You</em> 💌</h2>
         <p className="letter-intro">One last little surprise before your fairytale ends.</p>
-        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpened(true); } }} aria-label="Open the Princess Day letter" aria-expanded={opened}>
-          <div className="envelope-paper">
+        <div className={`royal-envelope ${opened ? "letter-open" : ""}`} onClick={() => setOpened(true)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpened(true); } }} aria-label="Open the Princess Day letter" aria-expanded={opened} aria-controls="princess-letter-content">
+          <div className="envelope-paper" id="princess-letter-content">
             <span className="letter-paper-kicker">A LITTLE NOTE, WITH WARM WISHES</span>
             <span className="letter-dear">Dear Tejashvini,</span>
             <p>I hope today brings you the kind of happiness that stays with you long after the day is over — the easy laughter, the lovely surprises and the little moments that make you smile for no particular reason.</p>
@@ -303,8 +303,8 @@ export default function Home() {
         {!opened && <p className="tap-envelope">Tap the envelope to unfold your little letter ♡</p>}
         {opened && <p className="letter-open-caption">A little reminder: you deserve all the good things coming your way. ♡</p>}
         <div className="final-gift-wrap">
-          <button className={`final-gift ${giftOpened ? "unwrapped" : ""}`} onClick={() => setGiftOpened(true)} aria-label="Open a final little gift"><span>🎀</span><b>?</b></button>
-          {giftOpened && <div className="wish-reveal"><span className="wish-reveal-kicker">✦ A LITTLE WISH, JUST FOR YOU ✦</span><div className="wish-reveal-sparkles" aria-hidden="true">✧　♡　✧</div><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Discover another wish <span>↻</span></button></div>}
+          <button className={`final-gift ${giftOpened ? "unwrapped" : ""}`} onClick={() => setGiftOpened(true)} aria-label={giftOpened ? "Final gift opened" : "Open a final little gift"} aria-expanded={giftOpened} aria-controls="final-wish-reveal"><span>🎀</span><b>?</b></button>
+          {giftOpened && <div className="wish-reveal" id="final-wish-reveal" aria-live="polite"><span className="wish-reveal-kicker">✦ A LITTLE WISH, JUST FOR YOU ✦</span><div className="wish-reveal-sparkles" aria-hidden="true">✧　♡　✧</div><p>{wishes[wishIndex]}</p><button onClick={() => setWishIndex((wishIndex + 1) % wishes.length)}>Discover another wish <span>↻</span></button></div>}
         </div>
         <p className="final-signoff">Keep shining, Princess. <span>♡</span></p>
         <button className="royal-back" onClick={() => { setScene(0); setOpened(false); setGiftOpened(false); setWishIndex(0); setActiveCompliment(0); setTrainStop(0); setOpenDestination(-1); setDestinationChoice(0); setActiveGift(-1); setUnwrappedGifts([]); }}>↺ Visit your kingdom again</button>
