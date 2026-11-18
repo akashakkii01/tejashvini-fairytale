@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   applicationName: "A Little Fairytale",
   openGraph: {
     title: "A Little Fairytale for Tejashvini",
-    description: "Step into a little kingdom made with care, filled with royal surprises and warm wishes.",
+    description: "Step into a magical princess world filled with lovely surprises and warm wishes.",
     siteName: "A Little Fairytale",
     type: "website",
     images: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         url: "/priness-castle-hero.png",
         width: 1200,
         height: 630,
-        alt: "The enchanted castle welcoming Tejashvini to her little kingdom",
+        alt: "A magical castle welcoming Princess Tejashvini to her fairytale world",
       },
     ],
   },
