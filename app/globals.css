@@ -2258,3 +2258,101 @@ body:has(.kingdom-welcome){
   }
 }
 
+
+
+/* Final mobile usability pass — keep existing scenes intact */
+@media(max-width:600px){
+  .kingdom{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .royal-scene{
+    width:100%;
+    min-width:0;
+  }
+  .royal-scene img{
+    max-width:100%;
+    height:auto;
+  }
+  .royal-scene p,
+  .royal-scene h2,
+  .royal-scene h3,
+  .royal-scene small{
+    overflow-wrap:anywhere;
+  }
+  .royal-scene button:not(.castle-poster-button){
+    max-width:100%;
+    touch-action:manipulation;
+  }
+  .royal-button,
+  .royal-back,
+  .destination-return,
+  .castle-blessing{
+    min-height:44px;
+  }
+  .train-stops{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+  }
+  .train-stop{
+    min-width:0;
+    min-height:126px;
+    padding-left:3px;
+    padding-right:3px;
+  }
+  .train-stop b{
+    font-size:clamp(8px,2.4vw,10px);
+    line-height:1.25;
+    overflow-wrap:anywhere;
+  }
+  .train-stop small{
+    font-size:clamp(7px,2vw,8px);
+    line-height:1.35;
+  }
+  .constellation-star{
+    min-width:0;
+    min-height:88px;
+    touch-action:manipulation;
+  }
+  .gifts-scene .gift-row{
+    min-width:0;
+    grid-template-columns:46px minmax(0,1fr) 22px;
+  }
+  .gifts-scene .gift-row-copy{
+    min-width:0;
+  }
+  .finale-scene .wish-reveal{
+    overflow-wrap:anywhere;
+  }
+}
+@media(max-width:360px){
+  .kingdom{
+    padding-left:11px;
+    padding-right:11px;
+  }
+  .royal-mark{
+    letter-spacing:1px;
+  }
+  .music-chip{
+    max-width:42%;
+    text-align:center;
+  }
+  .train-stop b{
+    font-size:8px;
+  }
+  .train-stop small{
+    font-size:7px;
+  }
+  .gifts-scene .gift-row{
+    grid-template-columns:40px minmax(0,1fr) 20px;
+    gap:8px;
+    padding:12px 9px;
+  }
+  .gifts-scene .gift-row-icon{
+    width:40px;
+    height:40px;
+  }
+}
