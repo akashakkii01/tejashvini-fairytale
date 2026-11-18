@@ -58,7 +58,7 @@ export default function Home() {
         if (!AudioContextClass) { starting = false; return; }
         context = new AudioContextClass();
         const master = context.createGain();
-        master.gain.value = 0.22;
+        master.gain.value = 0.48;
         master.connect(context.destination);
 
         const playBell = (frequency: number, at: number, volume = 0.16) => {
@@ -89,8 +89,8 @@ export default function Home() {
           if (!context) return;
           const padGain = context.createGain();
           padGain.gain.setValueAtTime(0.0001, at);
-          padGain.gain.linearRampToValueAtTime(0.035, at + 0.35);
-          padGain.gain.setValueAtTime(0.035, at + 2.1);
+          padGain.gain.linearRampToValueAtTime(0.06, at + 0.35);
+          padGain.gain.setValueAtTime(0.06, at + 2.1);
           padGain.gain.exponentialRampToValueAtTime(0.0001, at + 2.8);
           padGain.connect(master);
           frequencies.forEach((frequency) => {
@@ -106,10 +106,10 @@ export default function Home() {
         const playPhrase = () => {
           if (!context || context.state !== "running") return;
           const now = context.currentTime + 0.04;
-          playBell(melody[step % melody.length], now, 0.12);
+          playBell(melody[step % melody.length], now, 0.22);
           if (step % 4 === 0) {
             playPad(chords[(step / 4) % chords.length], now);
-            playBell(melody[(step + 2) % melody.length] * 2, now + 0.18, 0.035);
+            playBell(melody[(step + 2) % melody.length] * 2, now + 0.18, 0.065);
           }
           step += 1;
         };
@@ -123,6 +123,8 @@ export default function Home() {
           }
           started = true;
           document.removeEventListener("pointerdown", onFirstInteraction);
+          document.removeEventListener("click", onFirstInteraction);
+          document.removeEventListener("touchend", onFirstInteraction);
           document.removeEventListener("keydown", onFirstInteraction);
           playPhrase();
           timer = setInterval(playPhrase, 680);
@@ -141,10 +143,14 @@ export default function Home() {
 
     const onFirstInteraction = () => startMusic();
     document.addEventListener("pointerdown", onFirstInteraction);
+    document.addEventListener("click", onFirstInteraction);
+    document.addEventListener("touchend", onFirstInteraction, { passive: true });
     document.addEventListener("keydown", onFirstInteraction);
 
     return () => {
       document.removeEventListener("pointerdown", onFirstInteraction);
+      document.removeEventListener("click", onFirstInteraction);
+      document.removeEventListener("touchend", onFirstInteraction);
       document.removeEventListener("keydown", onFirstInteraction);
       if (timer) clearInterval(timer);
       if (context && context.state !== "closed") void context.close();
