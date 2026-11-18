@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const compliments = [
   ["♫", "Your Voice", "There is something so lovely about the way you speak — your words have a warmth all their own."],
@@ -36,6 +36,60 @@ const wishes = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    let context: AudioContext | undefined;
+    let timer: ReturnType<typeof setInterval> | undefined;
+    let step = 0;
+    let master: GainNode | undefined;
+    const melody = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 783.99, 1046.5, 783.99, 698.46, 659.25, 587.33, 523.25, 587.33, 659.25, 523.25];
+
+    try {
+      const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AudioContextClass) return;
+      context = new AudioContextClass();
+      master = context.createGain();
+      master.gain.value = 0.035;
+      master.connect(context.destination);
+
+      const playNote = (frequency: number, startAt: number) => {
+        if (!context || !master) return;
+        const oscillator = context.createOscillator();
+        const envelope = context.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(frequency, startAt);
+        envelope.gain.setValueAtTime(0.0001, startAt);
+        envelope.gain.exponentialRampToValueAtTime(0.7, startAt + 0.08);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.05);
+        oscillator.connect(envelope);
+        envelope.connect(master);
+        oscillator.start(startAt);
+        oscillator.stop(startAt + 1.08);
+      };
+
+      const playPhrase = () => {
+        if (!context || context.state !== "running") return;
+        const now = context.currentTime + 0.04;
+        playNote(melody[step % melody.length], now);
+        if (step % 4 === 0) playNote(melody[(step + 4) % melody.length] / 2, now);
+        step += 1;
+      };
+
+      void context.resume().then(() => {
+        playPhrase();
+        timer = setInterval(playPhrase, 620);
+      }).catch(() => {
+        // Browsers may block sound until the visitor interacts with the page.
+      });
+    } catch {
+      // Audio is optional; the website remains fully usable if unavailable.
+    }
+
+    return () => {
+      if (timer) clearInterval(timer);
+      if (context && context.state !== "closed") void context.close();
+    };
+  }, []);
+
   const [scene, setScene] = useState(0);
   const [opened, setOpened] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
