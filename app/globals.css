@@ -2364,3 +2364,27 @@ body:has(.kingdom-welcome){
   outline:2px solid #ffe0ae;
   outline-offset:4px;
 }
+
+/* Final small-screen safeguards for the existing interactive keepsakes */
+@media(max-width:480px){
+  .finale-scene .royal-envelope,
+  .finale-scene .final-gift,
+  .finale-scene .wish-reveal button,
+  .gifts-scene .gift-row,
+  .compliments-scene .constellation-star,
+  .train-scene .train-stop{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+  .finale-scene .envelope-paper,
+  .finale-scene .wish-reveal,
+  .gifts-scene .gift-row-copy{
+    min-width:0;
+    max-width:100%;
+  }
+  .finale-scene .envelope-paper p,
+  .finale-scene .wish-reveal p,
+  .gifts-scene .gift-row-copy p{
+    overflow-wrap:anywhere;
+  }
+}
