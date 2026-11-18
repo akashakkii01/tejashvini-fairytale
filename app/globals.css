@@ -2012,3 +2012,84 @@ body:has(.kingdom-welcome){
 @media(prefers-reduced-motion:reduce){
   .finale-scene .wish-reveal,.finale-scene .wish-reveal:before,.finale-scene .wish-reveal:after{animation:none}
 }
+
+/* Final letter — mobile comfort and touch-target polish */
+@media(max-width:480px){
+  .finale-scene{
+    width:100%;
+    padding:24px 0 22px;
+  }
+  .finale-scene .royal-eyebrow{
+    margin-bottom:9px;
+    font-size:8px;
+    letter-spacing:1.6px;
+  }
+  .finale-scene h2{
+    font-size:clamp(30px,8vw,39px);
+    margin:6px 0 9px;
+  }
+  .finale-scene .letter-intro{
+    max-width:290px;
+    padding:0 8px;
+    font-size:10px;
+  }
+  .finale-scene .royal-envelope{
+    width:min(340px,100%);
+    margin:21px auto 8px;
+  }
+  .finale-scene .envelope-paper{
+    padding:23px 17px 20px;
+  }
+  .finale-scene .letter-paper-kicker{
+    font-size:6px;
+    letter-spacing:1.35px;
+  }
+  .finale-scene .envelope-paper p{
+    font-size:10px;
+    line-height:1.7;
+    overflow-wrap:break-word;
+  }
+  .finale-scene .letter-open-caption{
+    max-width:300px;
+    padding:0 8px;
+    font-size:12px;
+    line-height:1.6;
+  }
+  .finale-scene .final-gift-wrap{
+    width:100%;
+    min-height:96px;
+    margin-top:5px;
+  }
+  .finale-scene .final-gift{
+    min-width:76px;
+    min-height:68px;
+  }
+  .finale-scene .wish-reveal{
+    width:100%;
+    padding:19px 17px 17px;
+    margin-top:14px;
+  }
+  .finale-scene .wish-reveal p{
+    font-size:15px;
+    line-height:1.6;
+  }
+  .finale-scene .wish-reveal button{
+    min-height:44px;
+    padding:10px 16px;
+  }
+  .finale-scene .final-signoff{
+    margin:9px 0 8px;
+    font-size:16px;
+  }
+  .finale-scene .royal-back{
+    min-height:44px;
+    padding:10px 14px;
+  }
+}
+@media(max-width:360px){
+  .finale-scene .envelope-paper{padding-left:14px;padding-right:14px}
+  .finale-scene .letter-paper-kicker{letter-spacing:1px}
+  .finale-scene .envelope-paper p{font-size:9.5px}
+  .finale-scene .wish-reveal-kicker{font-size:6px;letter-spacing:1.3px}
+}
+
