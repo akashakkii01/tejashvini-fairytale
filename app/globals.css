@@ -2258,3 +2258,75 @@ body:has(.kingdom-welcome){
   }
 }
 
+/* Interactive little-magic corner — a new surprise on every tap */
+.magic-corner{
+  position:fixed;
+  z-index:20;
+  right:max(16px,env(safe-area-inset-right));
+  bottom:max(16px,env(safe-area-inset-bottom));
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+  pointer-events:none;
+}
+.magic-wand-button{
+  pointer-events:auto;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:48px;
+  padding:9px 15px 9px 11px;
+  border:1px solid #ffe0f2aa;
+  border-radius:999px;
+  color:#fff4ff;
+  background:linear-gradient(125deg,#b84bb7ed,#8155cbed);
+  box-shadow:0 8px 25px #08051f66,0 0 22px #ed9cdb55,inset 0 1px #ffffff66;
+  cursor:pointer;
+  backdrop-filter:blur(12px);
+  animation:wand-hover 3s ease-in-out infinite;
+  transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+}
+.magic-wand-button:hover{transform:translateY(-4px) scale(1.04);filter:brightness(1.12);box-shadow:0 12px 30px #08051f77,0 0 30px #ed9cdb88}
+.magic-wand-button:active{transform:scale(.94)}
+.magic-wand-icon{font-size:20px;filter:drop-shadow(0 0 8px #ffe5bd)}
+.magic-wand-label{font-size:10px;font-weight:700;letter-spacing:.4px}
+.magic-toast{
+  pointer-events:none;
+  width:min(290px,calc(100vw - 32px));
+  padding:13px 16px 14px;
+  border:1px solid #f8d9efaa;
+  border-radius:17px 17px 4px 17px;
+  color:#fff0fb;
+  text-align:center;
+  background:linear-gradient(145deg,#38245feF,#6d3478ed);
+  box-shadow:0 12px 32px #08051f77,0 0 22px #ed9cdb33,inset 0 1px #ffffff35;
+  backdrop-filter:blur(14px);
+  animation:magic-toast-arrive .45s cubic-bezier(.2,.8,.2,1) both;
+}
+.magic-toast p{margin:5px 0 0;font:italic 13px/1.55 'Playfair Display',serif}
+.magic-toast-sparkles{color:#ffe4bd;font-size:11px;letter-spacing:4px;animation:magic-sparkle 2s ease-in-out infinite}
+.magic-toast:after{
+  content:"✧  ✦  ✧";
+  display:block;
+  margin-top:7px;
+  color:#f7c4e9;
+  font-size:10px;
+  letter-spacing:5px;
+  animation:magic-sparkle 2.4s ease-in-out infinite reverse;
+}
+@keyframes wand-hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes magic-toast-arrive{from{opacity:0;transform:translateY(12px) scale(.92);filter:blur(4px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes magic-sparkle{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
+@media(max-width:480px){
+  .magic-corner{right:12px;bottom:max(12px,env(safe-area-inset-bottom));gap:8px}
+  .magic-wand-button{min-height:46px;padding:8px 12px 8px 10px}
+  .magic-wand-label{font-size:9px}
+  .magic-toast{width:min(270px,calc(100vw - 24px));padding:12px 13px}
+  .magic-toast p{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .magic-wand-button,.magic-toast,.magic-toast-sparkles,.magic-toast:after{animation:none!important}
+  .magic-wand-button{transition:none}
+}
+
