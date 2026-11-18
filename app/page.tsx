@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const compliments = [
   ["♫", "Your Voice", "There is something so lovely about the way you speak — your words have a warmth all their own."],
@@ -36,6 +36,9 @@ const wishes = [
 ];
 
 export default function Home() {
+  const musicStarter = useRef<(() => void) | null>(null);
+  const [musicEnabled, setMusicEnabled] = useState(false);
+
   useEffect(() => {
     let context: AudioContext | undefined;
     let timer: ReturnType<typeof setInterval> | undefined;
@@ -122,6 +125,7 @@ export default function Home() {
             return;
           }
           started = true;
+          setMusicEnabled(true);
           document.removeEventListener("pointerdown", onFirstInteraction);
           document.removeEventListener("click", onFirstInteraction);
           document.removeEventListener("touchend", onFirstInteraction);
@@ -141,6 +145,7 @@ export default function Home() {
       }
     };
 
+    musicStarter.current = startMusic;
     const onFirstInteraction = () => startMusic();
     document.addEventListener("pointerdown", onFirstInteraction);
     document.addEventListener("click", onFirstInteraction);
@@ -154,6 +159,7 @@ export default function Home() {
       document.removeEventListener("keydown", onFirstInteraction);
       if (timer) clearInterval(timer);
       if (context && context.state !== "closed") void context.close();
+      musicStarter.current = null;
     };
   }, []);
 
@@ -181,7 +187,7 @@ export default function Home() {
       </div>
       <header className="royal-nav">
         <span className="royal-mark">👸 <b>YOUR LITTLE KINGDOM</b></span>
-        <span className="music-chip">♡ made with care</span>
+        <div className="royal-audio-controls"><button type="button" className="music-enable" onClick={() => musicStarter.current?.()} aria-live="polite">{musicEnabled ? "♫ Music on" : "♫ Enable Music"}</button><span className="music-chip">♡ made with care</span></div>
       </header>
 
       <div className="royal-progress" role="progressbar" aria-label="Fairytale progress" aria-valuemin={1} aria-valuemax={6} aria-valuenow={scene + 1} aria-valuetext={`Scene ${scene + 1} of 6`}><span style={{ width: `${(scene + 1) * (100 / 6)}%` }} /></div>
