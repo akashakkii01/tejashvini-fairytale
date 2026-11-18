@@ -2093,3 +2093,168 @@ body:has(.kingdom-welcome){
   .finale-scene .wish-reveal-kicker{font-size:6px;letter-spacing:1.3px}
 }
 
+/* Kingdom-wide motion pass — soft, layered fairytale movement */
+.kingdom{
+  isolation:isolate;
+  background-size:160% 160%;
+  animation:kingdom-atmosphere 22s ease-in-out infinite alternate;
+}
+.kingdom:before{
+  content:"";
+  position:fixed;
+  z-index:0;
+  inset:-35%;
+  pointer-events:none;
+  opacity:.18;
+  background:
+    radial-gradient(circle at 20% 30%,#f18edb55 0,transparent 22%),
+    radial-gradient(circle at 78% 65%,#9b83ed55 0,transparent 25%),
+    radial-gradient(circle at 55% 12%,#ffe4b455 0,transparent 18%);
+  filter:blur(34px);
+  animation:kingdom-aurora 28s ease-in-out infinite alternate;
+}
+.royal-nav,.royal-progress,.scene-count,.royal-footer{
+  animation:soft-arrive .9s both;
+}
+.royal-mark{display:inline-block;animation:crown-float 4.5s ease-in-out infinite}
+.music-chip{animation:chip-glow 4s ease-in-out infinite}
+.royal-progress span{position:relative;overflow:hidden}
+.royal-progress span:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg,transparent,#ffffffaa,transparent);
+  transform:translateX(-120%);
+  animation:progress-glint 3.8s ease-in-out infinite;
+}
+.royal-scene>*{
+  animation:scene-child-arrive .7s both;
+}
+.royal-scene>*:nth-child(2){animation-delay:.07s}
+.royal-scene>*:nth-child(3){animation-delay:.13s}
+.royal-scene>*:nth-child(4){animation-delay:.19s}
+.royal-scene>*:nth-child(5){animation-delay:.25s}
+.royal-scene>*:nth-child(6){animation-delay:.31s}
+.royal-scene>*:nth-child(7){animation-delay:.37s}
+.royal-scene>*:nth-child(8){animation-delay:.43s}
+.royal-scene h2 em{display:inline-block;animation:title-shimmer 5s ease-in-out infinite}
+.royal-eyebrow{animation:eyebrow-glow 3.5s ease-in-out infinite}
+.royal-button{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:transform .28s ease,filter .28s ease,box-shadow .28s ease;
+}
+.royal-button:after{
+  content:"";
+  position:absolute;
+  top:-70%;
+  left:-45%;
+  width:34%;
+  height:240%;
+  transform:rotate(24deg);
+  background:linear-gradient(90deg,transparent,#ffffff55,transparent);
+  animation:button-sheen 5.5s ease-in-out infinite;
+  pointer-events:none;
+}
+.royal-button:hover{transform:translateY(-3px) scale(1.015);filter:brightness(1.08)}
+.royal-back{transition:transform .25s ease,color .25s ease,background .25s ease}
+.royal-back:hover{transform:translateY(-2px);color:#fff0fc}
+.castle-poster-button{
+  transform-origin:50% 65%;
+  animation:poster-drift 7s ease-in-out infinite;
+  filter:drop-shadow(0 18px 35px #08051f55);
+}
+.castle-artwork-full{transition:filter .5s ease,transform .8s ease}
+.castle-poster-button:hover .castle-artwork-full{transform:scale(1.018);filter:brightness(1.08) saturate(1.08)}
+.princess-art-refined{animation:portrait-float 6s ease-in-out infinite}
+.princess-portrait-image{transition:filter .5s ease}
+.princess-art-refined:hover .princess-portrait-image{filter:brightness(1.08) saturate(1.08)}
+.royal-quote{animation:quote-arrive 1s .25s both}
+.compliment-constellation .constellation-orbit{animation:orbit-breathe 5s ease-in-out infinite}
+.constellation-star{transition:transform .3s ease,filter .3s ease}
+.constellation-star:hover{transform:scale(1.1);filter:drop-shadow(0 0 12px #ffe5bd)}
+.constellation-star-icon{display:inline-block;animation:star-drift 3.5s ease-in-out infinite}
+.constellation-star:nth-of-type(2) .constellation-star-icon{animation-delay:.4s}
+.constellation-star:nth-of-type(3) .constellation-star-icon{animation-delay:.8s}
+.constellation-star:nth-of-type(4) .constellation-star-icon{animation-delay:1.2s}
+.constellation-star:nth-of-type(5) .constellation-star-icon{animation-delay:1.6s}
+.constellation-star:nth-of-type(6) .constellation-star-icon{animation-delay:2s}
+.constellation-message{animation:message-unfold .55s cubic-bezier(.2,.8,.2,1) both}
+.train-moon{animation:moon-sway 7s ease-in-out infinite}
+.train-cloud{animation:cloud-drift 13s ease-in-out infinite alternate}
+.train-cloud-two{animation-delay:-5s}
+.storybook-train{animation:train-bob 2.8s ease-in-out infinite}
+.train-smoke{animation:smoke-twinkle 1.8s ease-in-out infinite}
+.train-stop{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.train-stop:hover{transform:translateY(-7px);box-shadow:0 15px 30px #08051f35,0 0 22px #f5b5e933}
+.train-stop>span{display:inline-block;animation:stop-icon-float 3.2s ease-in-out infinite}
+.train-stop:nth-child(2)>span{animation-delay:.5s}
+.train-stop:nth-child(3)>span{animation-delay:1s}
+.destination-hero-icon{animation:destination-hero-float 3.5s ease-in-out infinite}
+.destination-display span{display:inline-block;animation:destination-item-float 3s ease-in-out infinite}
+.destination-display span:nth-child(even){animation-delay:.45s}
+.destination-display span:nth-child(3n){animation-delay:.9s}
+.destination-reveal,.castle-surprise{animation:message-unfold .55s both}
+.gifts-scene .gift-row{animation:gift-card-enter .65s both}
+.gifts-scene .gift-row:nth-child(2){animation-delay:.08s}
+.gifts-scene .gift-row:nth-child(3){animation-delay:.16s}
+.gifts-scene .gift-row:nth-child(4){animation-delay:.24s}
+.gifts-scene .royal-note{animation:note-hover 7s ease-in-out infinite}
+.gifts-scene .gift-row-icon{display:grid;place-items:center}
+.finale-scene .final-gift:not(.unwrapped){animation:present-bounce 2.8s ease-in-out infinite}
+.finale-scene .final-gift.unwrapped{animation:present-pop .55s cubic-bezier(.2,.8,.2,1) both}
+.finale-scene .final-signoff span{display:inline-block;animation:heart-beat 2.2s ease-in-out infinite}
+.royal-footer .footer-crown{display:inline-block;animation:crown-float 4s ease-in-out infinite}
+.royal-footer .footer-stars{display:inline-block;animation:footer-twinkle 3s ease-in-out infinite}
+.sky-star{animation:sky-twinkle 3.8s ease-in-out infinite}
+.sky-star:nth-child(3n){animation-duration:5.1s}
+.sky-star:nth-child(4n){animation-delay:1.1s}
+@keyframes kingdom-atmosphere{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+@keyframes kingdom-aurora{0%{transform:translate3d(-2%,1%,0) rotate(0) scale(.95)}100%{transform:translate3d(3%,-2%,0) rotate(12deg) scale(1.08)}}
+@keyframes soft-arrive{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scene-child-arrive{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes crown-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-4px) rotate(3deg)}}
+@keyframes chip-glow{0%,100%{box-shadow:0 0 0 #f5b5e900}50%{box-shadow:0 0 15px #f5b5e944}}
+@keyframes progress-glint{0%,65%{transform:translateX(-120%)}100%{transform:translateX(340%)}}
+@keyframes title-shimmer{0%,100%{text-shadow:0 0 10px #f58de922}50%{text-shadow:0 0 24px #ffb6e988}}
+@keyframes eyebrow-glow{0%,100%{text-shadow:0 0 0 #f5b9e900}50%{text-shadow:0 0 13px #f5b9e988}}
+@keyframes button-sheen{0%,65%{left:-45%}100%{left:140%}}
+@keyframes poster-drift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(.25deg)}}
+@keyframes portrait-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes quote-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes orbit-breathe{0%,100%{filter:drop-shadow(0 0 5px #f5b5e933)}50%{filter:drop-shadow(0 0 18px #f5b5e988)}}
+@keyframes star-drift{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-5px) rotate(7deg)}}
+@keyframes message-unfold{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes moon-sway{0%,100%{transform:rotate(-18deg) translateY(0)}50%{transform:rotate(-10deg) translateY(-7px)}}
+@keyframes cloud-drift{from{transform:translateX(-8px)}to{transform:translateX(12px)}}
+@keyframes train-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes smoke-twinkle{0%,100%{opacity:.4;transform:translateY(0) scale(.8)}50%{opacity:1;transform:translateY(-7px) scale(1.2)}}
+@keyframes stop-icon-float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-5px) rotate(4deg)}}
+@keyframes destination-hero-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.04)}}
+@keyframes destination-item-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes gift-card-enter{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes note-hover{0%,100%{transform:rotate(-.45deg) translateY(0)}50%{transform:rotate(.25deg) translateY(-4px)}}
+@keyframes present-bounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-2deg)}}
+@keyframes present-pop{0%{transform:scale(.7) rotate(-12deg)}70%{transform:scale(1.12) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes heart-beat{0%,100%{transform:scale(1)}12%{transform:scale(1.2)}24%{transform:scale(1)}36%{transform:scale(1.12)}48%{transform:scale(1)}}
+@keyframes footer-twinkle{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes sky-twinkle{0%,100%{opacity:.2;transform:scale(.75) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(18deg)}}
+@media(prefers-reduced-motion:reduce){
+  .kingdom,.kingdom:before,.royal-nav,.royal-progress,.scene-count,.royal-footer,
+  .royal-mark,.music-chip,.royal-progress span:after,.royal-scene>*,
+  .royal-scene h2 em,.royal-eyebrow,.royal-button:after,.castle-poster-button,
+  .princess-art-refined,.royal-quote,.constellation-orbit,.constellation-star-icon,
+  .constellation-message,.train-moon,.train-cloud,.storybook-train,.train-smoke,
+  .train-stop>span,.destination-hero-icon,.destination-display span,
+  .destination-reveal,.castle-surprise,.gifts-scene .gift-row,
+  .gifts-scene .royal-note,.finale-scene .final-gift,
+  .finale-scene .final-signoff span,.royal-footer .footer-crown,
+  .royal-footer .footer-stars,.sky-star{
+    animation:none!important;
+  }
+  .royal-button,.royal-back,.train-stop,.castle-artwork-full{
+    transition:none!important;
+  }
+}
+
